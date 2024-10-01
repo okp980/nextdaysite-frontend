@@ -2,12 +2,23 @@
   "name": "nextdaysite-frontend",
   "private": true,
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "build": "turbo run build",
+    "build:omume": "turbo run build --filter=omume",
+    "dev:omume": "turbo run dev --filter=omume",
+    "lint": "turbo run lint",
+    "commitlint": "commitlint --edit",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "husky": "^9.1.6",
     "prettier": "^3.2.5",
     "turbo": "^2.1.2",
     "typescript": "^5.4.5"
