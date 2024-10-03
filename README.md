@@ -1,81 +1,70 @@
-# Turborepo starter
+# NEXTDAYSITE FRONTEND DOCUMENTATION
 
-This is an official starter Turborepo.
+`Project Name`: nextdaysite-frontend
 
-## Using this example
+`Description`: This single workspace(monorepo) project contains all frontend projects built for the NEXTDAYSITE projects. Next JS will be used for creating the web applications. It is managed using Turborepo. Turborepo is used to manage monorepo structure and handle the build pipelines efficiently.
 
-Run the following command:
+`Tech Stack`: Next JS, TypeScript, Tailwind CSS, Turborepo.
 
-```sh
-npx create-turbo@latest
-```
+## Folder Structure
 
-## What's inside?
+At the root, you will find both the app and packages folder. The app directory will contain the different web applications built by NEXTDAYSITE. The packages directory will contain reusable components, utility functions, services, etc., used across the project.
 
-This Turborepo includes the following packages/apps:
+- `app`
+  - `omome` : web application built with [Next.js](https://nextjs.org/)
+- `packages`
+  - `ui` : shared UI components
+  - `utils` : utility functions used across the project
+  - `eslint-config` : `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+  - `typescript-config` : `tsconfig.json` used throughout the monorepo
+  - `tailwind-config` : `tailwind.config.json` and `global-style.css` used throughout the monorepo
 
-### Apps and Packages
+## Utilities
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@nextdaysite/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@nextdaysite/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@nextdaysite/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
+This project has some additional tools already setup for you:
 
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
+- [Husky](https://typicode.github.io/husky/) to enforce `eslint` and `prettier` on git hooks for pre-commit and commit-msg
+- [Tailwind](https://prettier.io) for css styling
+- [NextUI](https://nextui.org/) UI library for consistency
+- [FramerMotion](https://www.framer.com/motion/) for animation
 
-### Build
+## Prerequisites:
 
-To build all apps and packages, run the following command:
+- Node JS >= 18.x
+- Npm
 
-```
-cd my-turborepo
-pnpm build
-```
+## Installation
+
+- Clone the repository
+
+  ```
+  git clone https://github.com/nextdaysite-frontend/
+  ```
+
+- Install dependencies and run on local machine
+  ```
+  cd nextdaysite-frontend
+  npm install
+  npm run dev
+  ```
 
 ### Develop
 
-To develop all apps and packages, run the following command:
+To develop `omome` web application, run the following command:
 
 ```
-cd my-turborepo
-pnpm dev
+cd nextdaysite-frontend
+npm run dev:omume
 ```
 
-### Remote Caching
+### Build
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+To build `omome` web application, run the following command:
 
 ```
-cd my-turborepo
-npx turbo login
+cd nextdaysite-frontend
+npm run build:omume
 ```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
