@@ -9,5 +9,8 @@
   "devDependencies": {
     "@nextdaysite/typescript-config": "*",
     "tailwindcss": "^3.4.13"
+  },
+  "dependencies": {
+    "@nextui-org/theme": "^2.2.11"
   }
 }
