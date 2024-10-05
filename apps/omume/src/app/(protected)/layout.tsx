@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import "@nextdaysite/tailwind-config/global-style"
-import UIProvider from "@nextdaysite/ui/provider"
+import UIProvider from "@nextdaysite/ui/ui-provider"
 import { inter, lato } from "@nextdaysite/tailwind-config/font"
+import ThemeProvider from "@nextdaysite/ui/theme-provider"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,10 +15,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${lato.variable} antialiased`}>
         {/* Wrap application with UI Provider from @nextdaysite/ui/provider at root */}
-        <UIProvider>{children}</UIProvider>
+        <UIProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </UIProvider>
       </body>
     </html>
   )

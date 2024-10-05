@@ -1,5 +1,5 @@
 import { Button } from "@nextdaysite/ui/button"
-import Image from "next/image"
+import ThemeSwitch from "@nextdaysite/ui/theme-switch"
 
 export default function Welcome() {
   return (
@@ -10,6 +10,7 @@ export default function Welcome() {
       >
         Welcome
       </Button>
+      <ThemeSwitch />
     </div>
   )
 }
