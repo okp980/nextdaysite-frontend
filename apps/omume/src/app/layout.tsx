@@ -1,18 +1,7 @@
 import type { Metadata } from "next"
-import localFont from "next/font/local"
 import "@nextdaysite/tailwind-config/global-style"
 import UIProvider from "@nextdaysite/ui/provider"
-
-const geistSans = localFont({
-  src: "./_assets/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-})
-const geistMono = localFont({
-  src: "./_assets/fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-})
+import { inter, lato } from "@nextdaysite/tailwind-config/font"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,9 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${inter.variable} ${lato.variable} antialiased`}>
         {/* /wrap application with UI Provider from @nextdaysite/ui/provider at root */}
         <UIProvider>{children}</UIProvider>
       </body>
