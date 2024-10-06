@@ -9,7 +9,8 @@
     "./card": "./src/card.tsx",
     "./code": "./src/code.tsx",
     "./theme-switch": "./src/components/theme-switch/theme-switch.tsx",
-    "./nav-bar": "./src/components/nav/nav.tsx"
+    "./nav-bar": "./src/components/nav/nav.tsx",
+    "./signup": "./src/components/signup/signup.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

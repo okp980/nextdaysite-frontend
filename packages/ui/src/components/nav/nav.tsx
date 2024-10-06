@@ -1,17 +1,17 @@
-"use client";
+"use client"
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
   Link,
-} from "@nextui-org/react";
-import { ReactElement } from "react";
+} from "@nextui-org/react"
+import { ReactElement } from "react"
 type Props = {
-  navLinks?: { label: string; route: string }[];
-  RightComponent?: ReactElement;
-  activeLink?: string;
-};
+  navLinks?: { label: string; route: string }[]
+  RightComponent?: ReactElement
+  activeLink?: string
+}
 
 export default function Nav({ navLinks, RightComponent, activeLink }: Props) {
   return (
@@ -19,7 +19,7 @@ export default function Nav({ navLinks, RightComponent, activeLink }: Props) {
       maxWidth="2xl"
       height={80}
       classNames={{
-        brand: ["text-large font-fugaz text-primary"],
+        brand: ["text-2xl font-fugaz text-primary"],
       }}
     >
       <NavbarBrand>
@@ -46,5 +46,5 @@ export default function Nav({ navLinks, RightComponent, activeLink }: Props) {
         <NavbarContent justify="end">{RightComponent}</NavbarContent>
       )}
     </Navbar>
-  );
+  )
 }

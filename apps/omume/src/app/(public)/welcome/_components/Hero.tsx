@@ -1,14 +1,8 @@
-import React from "react";
-import heroImg from "./../_assets/images/hero-img.jpeg";
-import Image from "next/image";
-import SearchEvent from "./SearchEvent";
-import { extendVariants, Navbar } from "@nextui-org/react";
-
-type Props = {};
-
-const CustomNavBar = extendVariants(Navbar, {
-  slots: { brand: "font-fugaz text-[44px]" },
-});
+import React from "react"
+import heroImg from "./../_assets/images/hero-img.jpeg"
+import Image from "next/image"
+import SearchEvent from "./SearchEvent"
+type Props = {}
 
 export default function Hero({}: Props) {
   return (
@@ -34,5 +28,5 @@ export default function Hero({}: Props) {
         </div>
       </div>
     </section>
-  );
+  )
 }
