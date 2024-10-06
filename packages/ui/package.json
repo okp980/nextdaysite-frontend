@@ -5,10 +5,11 @@
   "exports": {
     "./ui-provider": "./src/provider/ui-provider.tsx",
     "./theme-provider": "./src/provider/theme-provider.tsx",
-    "./button": "./src/button.tsx",
+    "./button": "./src/components/form/button.tsx",
     "./card": "./src/card.tsx",
     "./code": "./src/code.tsx",
-    "./theme-switch": "./src/components/theme-switch/theme-switch.tsx"
+    "./theme-switch": "./src/components/theme-switch/theme-switch.tsx",
+    "./nav-bar": "./src/components/nav/nav.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -26,9 +27,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@nextui-org/button": "^2.0.38",
-    "@nextui-org/system": "^2.2.6",
-    "@nextui-org/theme": "^2.2.11",
+    "@nextui-org/react": "^2.4.8",
     "framer-motion": "^11.11.1",
     "next-themes": "^0.3.0",
     "react": "^18.2.0",

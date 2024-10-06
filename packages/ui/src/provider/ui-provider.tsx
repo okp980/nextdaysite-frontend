@@ -1,2 +1,3 @@
-import { NextUIProvider as UIProvider } from "@nextui-org/system";
+"use client";
+import { NextUIProvider as UIProvider } from "@nextui-org/react";
 export default UIProvider;

@@ -1,24 +1,46 @@
-import type { Config } from "tailwindcss"
-import { nextui } from "@nextui-org/theme"
+import type { Config } from "tailwindcss";
+import { nextui } from "@nextui-org/react";
 
-const config: Config = {
-  content: [
-    // make sure it's pointing to the ROOT node_module
-    "../../node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
-  ],
+const config: Omit<Config, "content"> = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["var(--font-inter"],
-        lato: ["var(--font-lato"],
+        inter: ["var(--font-inter)"],
+        lato: ["var(--font-lato)"],
+        fugaz: ["var(--font-fugaz-one)"],
       },
       textColor: {
-        body: "#475467",
+        body: "#667085",
         bolder: "#101828",
       },
     },
   },
   darkMode: "class",
-  plugins: [nextui()],
-}
-export default config
+  plugins: [
+    nextui({
+      addCommonColors: true,
+
+      themes: {
+        light: {
+          colors: {
+            foreground: "#667085",
+            background: "#ffffff",
+            primary: {
+              DEFAULT: "#6941C6",
+              foreground: "#FFFFFF",
+            },
+          },
+        },
+        dark: {
+          colors: {
+            primary: {
+              DEFAULT: "#6941C6",
+              foreground: "#FFFFFF",
+            },
+          },
+        },
+      },
+    }),
+  ],
+};
+export default config;
