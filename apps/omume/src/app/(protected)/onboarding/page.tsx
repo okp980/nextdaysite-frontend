@@ -1,7 +1,8 @@
-import React from "react";
+import React from "react"
+import SelectItem from "./_components/SelectItem"
 
-type Props = {};
+type Props = {}
 
 export default function Page({}: Props) {
-  return <div>Page</div>;
+  return <SelectItem />
 }
