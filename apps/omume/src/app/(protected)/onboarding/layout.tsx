@@ -1,13 +1,11 @@
-import Image from "next/image"
-import dashboard from "./_assets/images/dashboard.jpg"
-import Nav from "@nextdaysite/ui/nav-bar"
-import Template from "./template"
+import Image from "next/image";
+import dashboard from "./_assets/images/dashboard.jpg";
+import Nav from "@nextdaysite/ui/nav-bar";
 export default function OnboardingLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const params = new URLSearchParams()
   return (
     <section className="lg:h-screen">
       <Nav />
@@ -18,5 +16,5 @@ export default function OnboardingLayout({
         </div>
       </div>
     </section>
-  )
+  );
 }

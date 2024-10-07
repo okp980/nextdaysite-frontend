@@ -32,7 +32,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         value={45}
         className="max-w-xl"
       />
-      <p className="text-black font-inter font-semibold text-xl lg:text-4xl  mt-5 lg:mt-16 my-6">
+      <p className="text-black font-inter font-semibold text-xl lg:text-4xl  mt-5 lg:mt-16 mb-6">
         {getTitle(pathname)}
       </p>
       {children}
