@@ -1,9 +1,9 @@
-import React from "react"
-import User from "../_assets/svg/User"
-import Bussiness from "../_assets/svg/Bussiness"
-import Item from "./Item"
+import React from "react";
+import User from "../_assets/svg/User";
+import Bussiness from "../_assets/svg/Bussiness";
+import Item from "./Item";
 
-type Props = {}
+type Props = {};
 
 const items = [
   {
@@ -14,7 +14,7 @@ const items = [
     name: "Bussiness",
     icon: <Bussiness />,
   },
-]
+];
 
 export default function SelectItem({}: Props) {
   return (
@@ -23,5 +23,5 @@ export default function SelectItem({}: Props) {
         <Item Icon={item.icon} name={item.name} key={i} />
       ))}
     </div>
-  )
+  );
 }

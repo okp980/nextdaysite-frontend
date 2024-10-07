@@ -1,12 +1,12 @@
-import React from "react"
-import CheckerEmpty from "../_assets/svg/CheckerEmpty"
-import CheckerFilled from "../_assets/svg/CheckerFilled"
+import React from "react";
+import CheckerEmpty from "../_assets/svg/CheckerEmpty";
+import CheckerFilled from "../_assets/svg/CheckerFilled";
 
 type Props = {
-  Icon: React.ReactElement
-  name: string
-  active?: boolean
-}
+  Icon: React.ReactElement;
+  name: string;
+  active?: boolean;
+};
 
 export default function Item({ Icon, name, active }: Props) {
   return (
@@ -17,5 +17,5 @@ export default function Item({ Icon, name, active }: Props) {
       </div>
       {active ? <CheckerFilled /> : <CheckerEmpty />}
     </div>
-  )
+  );
 }

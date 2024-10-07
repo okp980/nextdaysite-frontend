@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 export default function Bussiness({}: Props) {
   return (
@@ -30,5 +30,5 @@ export default function Bussiness({}: Props) {
         />
       </defs>
     </svg>
-  )
+  );
 }
