@@ -1,11 +1,11 @@
-"use client"
-import Signup from "@nextdaysite/ui/signup"
-import React from "react"
-import Footer from "./Footer"
-import { redirect } from "next/navigation"
-import Link from "next/link"
+"use client";
+import Signup from "@nextdaysite/ui/signup";
+import React from "react";
+import Footer from "./Footer";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
-type Props = {}
+type Props = {};
 
 export default function Register({}: Props) {
   return (
@@ -21,5 +21,5 @@ export default function Register({}: Props) {
         </Link>{" "}
       </p>
     </section>
-  )
+  );
 }

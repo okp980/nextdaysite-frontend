@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 export default function Facebook({}: Props) {
   return (
@@ -32,5 +32,5 @@ export default function Facebook({}: Props) {
         </clipPath>
       </defs>
     </svg>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import React from "react"
-import Verify from "./_components/Verify"
+import React from "react";
+import Verify from "./_components/Verify";
 
-type Props = {}
+type Props = {};
 
 export default function Page({}: Props) {
-  return <Verify />
+  return <Verify />;
 }

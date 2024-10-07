@@ -1,5 +1,5 @@
-import type { Config } from "tailwindcss"
-import sharedConfig from "@nextdaysite/tailwind-config"
+import type { Config } from "tailwindcss";
+import sharedConfig from "@nextdaysite/tailwind-config";
 
 const config: Config = {
   content: [
@@ -10,5 +10,5 @@ const config: Config = {
     "./../../node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}", // responsible for rendering nextui styling
   ],
   presets: [sharedConfig],
-}
-export default config
+};
+export default config;

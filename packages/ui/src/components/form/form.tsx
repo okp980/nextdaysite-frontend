@@ -1,13 +1,13 @@
-import { Input, InputProps } from "@nextui-org/react"
+import { Input, InputProps } from "@nextui-org/react";
 
 export type formFieldsType = Pick<
   InputProps,
   "type" | "label" | "defaultValue" | "description"
->[]
+>[];
 
 type Props = {
-  formFields: formFieldsType
-}
+  formFields: formFieldsType;
+};
 
 export default function ({ formFields }: Props) {
   return (
@@ -16,5 +16,5 @@ export default function ({ formFields }: Props) {
         <Input key={index} {...field} labelPlacement={"outside"} />
       ))}
     </div>
-  )
+  );
 }

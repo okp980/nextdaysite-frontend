@@ -1,5 +1,5 @@
-import { extendVariants, Input } from "@nextui-org/react"
+import { extendVariants, Input } from "@nextui-org/react";
 
-const CustomInput = extendVariants(Input, {})
+const CustomInput = extendVariants(Input, {});
 
-export default CustomInput
+export default CustomInput;

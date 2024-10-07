@@ -1,13 +1,13 @@
-"use client"
-import Button from "@nextdaysite/ui/button"
-import ThemeSwitch from "@nextdaysite/ui/theme-switch"
-import React from "react"
-import { useRouter } from "next/navigation"
+"use client";
+import Button from "@nextdaysite/ui/button";
+import ThemeSwitch from "@nextdaysite/ui/theme-switch";
+import React from "react";
+import { useRouter } from "next/navigation";
 
-type Props = {}
+type Props = {};
 
 export default function RightComponent({}: Props) {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <div className="flex gap-3">
       <ThemeSwitch />
@@ -16,5 +16,5 @@ export default function RightComponent({}: Props) {
         Sign Up
       </Button>
     </div>
-  )
+  );
 }

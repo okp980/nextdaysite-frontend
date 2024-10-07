@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 export default function Google({}: Props) {
   return (
@@ -35,5 +35,5 @@ export default function Google({}: Props) {
         </clipPath>
       </defs>
     </svg>
-  )
+  );
 }

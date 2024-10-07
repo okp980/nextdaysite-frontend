@@ -1,10 +1,10 @@
-"use client"
-import { Button, Input } from "@nextui-org/react"
-import React from "react"
-import Image from "next/image"
-import mail from "../_assets/images/gmail.png"
+"use client";
+import { Button, Input } from "@nextui-org/react";
+import React from "react";
+import Image from "next/image";
+import mail from "../_assets/images/gmail.png";
 
-type Props = {}
+type Props = {};
 
 export default function Verify({}: Props) {
   return (
@@ -40,5 +40,5 @@ export default function Verify({}: Props) {
         </Button>
       </div>
     </section>
-  )
+  );
 }
