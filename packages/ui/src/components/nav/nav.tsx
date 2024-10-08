@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import {
   Navbar,
   NavbarBrand,
@@ -9,16 +9,16 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   extendVariants,
-} from "@nextui-org/react";
-import React, { ReactElement } from "react";
-import { HiMenuAlt3 } from "react-icons/hi";
+} from "@nextui-org/react"
+import React, { ReactElement } from "react"
+import { HiMenuAlt3 } from "react-icons/hi"
 type Props = {
-  navLinks?: { label: string; route: string }[];
-  RightComponent?: ReactElement;
-  activeLink?: string;
-  isTransparent?: boolean;
-  menuItems?: { label: string; route: string }[];
-};
+  navLinks?: { label: string; route: string }[]
+  RightComponent?: ReactElement
+  activeLink?: string
+  isTransparent?: boolean
+  menuItems?: { label: string; route: string }[]
+}
 
 const CustomLink = extendVariants(Link, {
   variants: {
@@ -26,7 +26,7 @@ const CustomLink = extendVariants(Link, {
       foreground: "text-[#290619]",
     },
   },
-});
+})
 
 export default function Nav({
   navLinks,
@@ -34,7 +34,7 @@ export default function Nav({
   activeLink,
   menuItems,
 }: Props) {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   return (
     <Navbar
       maxWidth="full"
@@ -48,6 +48,7 @@ export default function Nav({
       }}
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
+      shouldHideOnScroll
     >
       <NavbarBrand>
         {/* @ts-ignore */}
@@ -77,17 +78,20 @@ export default function Nav({
           {RightComponent}
         </NavbarContent>
       )}
-      <NavbarMenuToggle
-        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        className="sm:hidden"
-        icon={<HiMenuAlt3 size={70} color="#000000" />}
-      />
+      {menuItems && (
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+          icon={<HiMenuAlt3 size={70} color="#000000" />}
+        />
+      )}
       {menuItems && (
         <NavbarMenu>
           {menuItems?.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <CustomLink
                 className="w-full"
+                href={item.route}
                 {...{
                   color: item.route !== activeLink ? "foreground" : undefined,
                 }}
@@ -101,5 +105,5 @@ export default function Nav({
         </NavbarMenu>
       )}
     </Navbar>
-  );
+  )
 }
