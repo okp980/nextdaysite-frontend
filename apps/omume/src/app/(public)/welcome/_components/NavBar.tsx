@@ -1,11 +1,11 @@
-"use client"
-import Nav from "@nextdaysite/ui/nav-bar"
-import React from "react"
-import { navLinks } from "../_util/data"
-import RightComponent from "./RightComponent"
-import { usePathname } from "next/navigation"
+"use client";
+import Nav from "@nextdaysite/ui/nav-bar";
+import React from "react";
+import { navLinks } from "../_util/data";
+import RightComponent from "./RightComponent";
+import { usePathname } from "next/navigation";
 
-type Props = {}
+type Props = {};
 
 const menuItems = [
   {
@@ -28,10 +28,10 @@ const menuItems = [
     label: "Sign Up",
     route: "/signup",
   },
-]
+];
 
 export default function NavBar({}: Props) {
-  const pathname = usePathname()
+  const pathname = usePathname();
   return (
     <Nav
       navLinks={navLinks}
@@ -39,5 +39,5 @@ export default function NavBar({}: Props) {
       activeLink={pathname}
       menuItems={menuItems}
     />
-  )
+  );
 }
