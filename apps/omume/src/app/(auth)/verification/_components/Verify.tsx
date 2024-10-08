@@ -1,22 +1,22 @@
-"use client";
-import { Button, Input } from "@nextui-org/react";
-import React from "react";
-import Image from "next/image";
-import mail from "../_assets/images/gmail.png";
-import { useRouter } from "next/navigation";
+"use client"
+import { Button, Input } from "@nextui-org/react"
+import React from "react"
+import Image from "next/image"
+import mail from "../_assets/images/gmail.png"
+import { useRouter } from "next/navigation"
 
-type Props = {};
+type Props = {}
 
 export default function Verify({}: Props) {
-  const router = useRouter();
+  const router = useRouter()
   return (
     <section className="px-4 pt-9 font-lato">
       <div className="max-w-[580px] mx-auto flex flex-col justify-center items-center">
         <Image src={mail} height={64} width={64} alt="Email" />
-        <h1 className="text-4xl font-bold  mb-3 mt-6 text-black ">
+        <h1 className="text-2xl lg:text-4xl font-bold  mb-3 mt-6 text-black ">
           Verify your email
         </h1>
-        <p className=" text-body text-base mb-6 text-center">
+        <p className=" text-body text-small lg:text-base mb-6 text-center">
           We’ve sent you an email with a link that you will need to click to
           verify your email. Kindly verify by clicking the link on your most
           recent verification email. This link will expire in 12 hours.
@@ -34,7 +34,7 @@ export default function Verify({}: Props) {
           }}
         />
         <Button
-          className="mt-7 h-11 text-base font-bold rounded-2xl"
+          className="mt-7 h-11 text-sm lg:text-base font-bold rounded-2xl mb-20"
           color="primary"
           onClick={() => router.push("/onboarding")}
           fullWidth
@@ -43,5 +43,5 @@ export default function Verify({}: Props) {
         </Button>
       </div>
     </section>
-  );
+  )
 }
