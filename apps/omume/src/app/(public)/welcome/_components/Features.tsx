@@ -1,11 +1,11 @@
-import Button from "@nextdaysite/ui/button";
-import Image from "next/image";
-import React from "react";
-import feature from "../_assets/images/features.png";
+import Button from "@nextdaysite/ui/button"
+import Image from "next/image"
+import React from "react"
+import feature from "../_assets/images/features.png"
 
 type Props = {
-  invert?: boolean;
-};
+  invert?: boolean
+}
 
 export default function Features({ invert }: Props) {
   return (
@@ -28,7 +28,7 @@ export default function Features({ invert }: Props) {
             payroll—Deel does it all with full compliance.
           </p>
           <Button
-            className="w-[91px] lg:w-32 rounded-3xl h-11 lg:h-12"
+            className="w-[91px] text-xs lg:text-sm lg:w-32 rounded-3xl h-11 lg:h-12"
             variant="ghost"
           >
             Learn more
@@ -39,5 +39,5 @@ export default function Features({ invert }: Props) {
         <Image src={feature} alt="Feature" />
       </div>
     </section>
-  );
+  )
 }

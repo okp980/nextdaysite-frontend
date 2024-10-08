@@ -1,14 +1,14 @@
-"use client";
-import React from "react";
-import { Card, CardBody } from "@nextui-org/react";
-import Button from "@nextdaysite/ui/button";
-import Image from "next/image";
+"use client"
+import React from "react"
+import { Card, CardBody } from "@nextui-org/react"
+import Button from "@nextdaysite/ui/button"
+import Image from "next/image"
 
-import x from "../_assets/images/x.png";
-import tiktok from "../_assets/images/tiktok.png";
-import facebook from "../_assets/images/facebook.png";
-import youtube from "../_assets/images/youtube.png";
-type Props = {};
+import x from "../_assets/images/x.png"
+import tiktok from "../_assets/images/tiktok.png"
+import facebook from "../_assets/images/facebook.png"
+import youtube from "../_assets/images/youtube.png"
+type Props = {}
 
 export default function Hero({}: Props) {
   return (
@@ -33,7 +33,7 @@ export default function Hero({}: Props) {
                 Maximise Your Event’s Reach with Powerful Social Media
                 Broadcasts
               </p>
-              <p className="pb-6 font-dm-sans text-sm text-body ">
+              <p className="pb-6 font-dm-sans text-sm lg:text-base text-body ">
                 Promote and broadcast your event to millions across social
                 platforms—engage your audience in real-time, wherever they are.
               </p>
@@ -48,7 +48,7 @@ export default function Hero({}: Props) {
         </div>
         {/* socials */}
         <div className="relative  flex flex-1 w-full lg:max-w-[520px]">
-          <div className="absolute top-0 left-0">
+          {/* <div className="absolute top-0 left-0">
             <Image src={x} alt="x" width={240} height={158} />
           </div>
           <div className="absolute right-1/4">
@@ -59,9 +59,9 @@ export default function Hero({}: Props) {
           </div>
           <div className="absolute bottom-28 right-0">
             <Image src={youtube} alt="youtube" width={256} height={154} />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
-  );
+  )
 }
