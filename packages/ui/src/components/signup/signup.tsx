@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   Button,
   Card,
@@ -6,31 +6,31 @@ import {
   CardFooter,
   CardHeader,
   Input,
-} from "@nextui-org/react"
-import React, { ReactElement, useState } from "react"
-import Google from "../../assets/svg/Google"
-import Facebook from "../../assets/svg/Facebook"
-import Apple from "../../assets/svg/Apple"
-import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5"
+} from "@nextui-org/react";
+import React, { ReactElement, useState } from "react";
+import Google from "../../assets/svg/Google";
+import Facebook from "../../assets/svg/Facebook";
+import Apple from "../../assets/svg/Apple";
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
 type Props = {
-  stepOneTitle?: string
-  stepOneActionBtnLabel?: string
-  stepOneActionBtnOnClick?: () => void
-  stepTwoTitle?: string
-  signInWithGoogleBtnLabel?: string
-  signInWithFacebookBtnLabel?: string
-  signInWithAppleBtnLabel?: string
-  signInWithAppleIcon?: ReactElement
-  signInWithFacebookIcon?: ReactElement
-  signInWithGoogleIcon?: ReactElement
-  signInWithGoogleOnClick?: () => void
-  signInWithFacebookOnClick?: () => void
-  signInWithAppleOnClick?: () => void
-  footer: ReactElement
-  stepTwoActionBtnLabel?: string
-  stepTwoActionBtnOnClick: () => void
-}
+  stepOneTitle?: string;
+  stepOneActionBtnLabel?: string;
+  stepOneActionBtnOnClick?: () => void;
+  stepTwoTitle?: string;
+  signInWithGoogleBtnLabel?: string;
+  signInWithFacebookBtnLabel?: string;
+  signInWithAppleBtnLabel?: string;
+  signInWithAppleIcon?: ReactElement;
+  signInWithFacebookIcon?: ReactElement;
+  signInWithGoogleIcon?: ReactElement;
+  signInWithGoogleOnClick?: () => void;
+  signInWithFacebookOnClick?: () => void;
+  signInWithAppleOnClick?: () => void;
+  footer: ReactElement;
+  stepTwoActionBtnLabel?: string;
+  stepTwoActionBtnOnClick: () => void;
+};
 
 export default function Signup({
   stepOneTitle = "Create an account",
@@ -50,20 +50,20 @@ export default function Signup({
   stepTwoActionBtnOnClick,
   footer,
 }: Props) {
-  const [step, setStep] = useState<1 | 2>(1)
-  const [isVisible, setIsVisible] = React.useState(false)
+  const [step, setStep] = useState<1 | 2>(1);
+  const [isVisible, setIsVisible] = React.useState(false);
 
-  const toggleVisibility = () => setIsVisible(!isVisible)
+  const toggleVisibility = () => setIsVisible(!isVisible);
   const handleSubmit = (e: any) => {
     if (step === 1) {
-      stepOneActionBtnOnClick && stepOneActionBtnOnClick()
-      setStep(2)
+      stepOneActionBtnOnClick && stepOneActionBtnOnClick();
+      setStep(2);
     }
     if (step === 2) {
-      stepTwoActionBtnOnClick()
-      console.log("clicked")
+      stepTwoActionBtnOnClick();
+      console.log("clicked");
     }
-  }
+  };
   return (
     <Card
       className="max-w-[560px] font-lato p-5"
@@ -197,5 +197,5 @@ export default function Signup({
       </CardBody>
       <CardFooter>{footer}</CardFooter>
     </Card>
-  )
+  );
 }
