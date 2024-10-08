@@ -1,12 +1,12 @@
-"use client"
-import React, { useState } from "react"
-import User from "../_assets/svg/User"
-import Bussiness from "../_assets/svg/Bussiness"
-import Item from "./Item"
-import Button from "@nextdaysite/ui/button"
-import { useRouter } from "next/navigation"
+"use client";
+import React, { useState } from "react";
+import User from "../_assets/svg/User";
+import Bussiness from "../_assets/svg/Bussiness";
+import Item from "./Item";
+import Button from "@nextdaysite/ui/button";
+import { useRouter } from "next/navigation";
 
-type Props = {}
+type Props = {};
 
 const items = [
   {
@@ -17,22 +17,22 @@ const items = [
     name: "bussiness",
     icon: <Bussiness />,
   },
-]
+];
 
 export default function SelectItem({}: Props) {
-  const router = useRouter()
-  const [user, setUser] = useState("")
+  const router = useRouter();
+  const [user, setUser] = useState("");
   const handleClick = (type: string) => {
-    setUser(type)
-  }
+    setUser(type);
+  };
   const handleContinue = () => {
     if (user === "attendee") {
-      router.push("/onboarding/user/interest")
+      router.push("/onboarding/user/interest");
     }
     if (user === "bussiness") {
-      router.push("/onboarding/bussiness/profile")
+      router.push("/onboarding/bussiness/profile");
     }
-  }
+  };
   return (
     <div className="flex flex-col gap-4">
       {items.map((item, i) => (
@@ -57,5 +57,5 @@ export default function SelectItem({}: Props) {
         </Button>
       </div>
     </div>
-  )
+  );
 }

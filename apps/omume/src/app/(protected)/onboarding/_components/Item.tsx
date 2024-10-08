@@ -1,14 +1,14 @@
-import React from "react"
-import CheckerEmpty from "../_assets/svg/CheckerEmpty"
-import CheckerFilled from "../_assets/svg/CheckerFilled"
-import { Card, CardBody } from "@nextui-org/react"
+import React from "react";
+import CheckerEmpty from "../_assets/svg/CheckerEmpty";
+import CheckerFilled from "../_assets/svg/CheckerFilled";
+import { Card, CardBody } from "@nextui-org/react";
 
 type Props = {
-  Icon: React.ReactElement
-  name: string
-  active?: boolean
-  onClick: () => void
-}
+  Icon: React.ReactElement;
+  name: string;
+  active?: boolean;
+  onClick: () => void;
+};
 
 export default function Item({ Icon, name, active, onClick }: Props) {
   return (
@@ -29,5 +29,5 @@ export default function Item({ Icon, name, active, onClick }: Props) {
         {active ? <CheckerFilled /> : <CheckerEmpty />}
       </CardBody>
     </Card>
-  )
+  );
 }
