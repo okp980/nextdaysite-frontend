@@ -1,14 +1,12 @@
-import Image from "next/image";
-import dashboard from "./_assets/images/dashboard.jpg";
-import Nav from "@nextdaysite/ui/nav-bar";
+import Image from "next/image"
+import dashboard from "./_assets/images/dashboard.jpg"
 export default function OnboardingLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <section className="lg:h-screen">
-      <Nav isTransparent />
       <div className="flex h-screen">
         <div className="flex-1">{children}</div>
         <div className="hidden lg:flex flex-col justify-center items-center h-full bg-gradient-to-r from-[#E0C3FC] to-[#8EC5FC] w-[604px]">
@@ -16,5 +14,5 @@ export default function OnboardingLayout({
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import type { Config } from "tailwindcss";
-import { nextui } from "@nextui-org/react";
+import type { Config } from "tailwindcss"
+import { nextui } from "@nextui-org/react"
 
 const config: Omit<Config, "content"> = {
   theme: {
@@ -8,6 +8,7 @@ const config: Omit<Config, "content"> = {
         inter: ["var(--font-inter)"],
         lato: ["var(--font-lato)"],
         fugaz: ["var(--font-fugaz-one)"],
+        "dm-sans": ["var(--font-dm-sans)"],
       },
       textColor: {
         body: "#667085",
@@ -42,5 +43,5 @@ const config: Omit<Config, "content"> = {
       },
     }),
   ],
-};
-export default config;
+}
+export default config

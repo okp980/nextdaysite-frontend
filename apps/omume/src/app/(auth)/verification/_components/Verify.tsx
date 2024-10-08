@@ -1,12 +1,14 @@
-"use client";
-import { Button, Input } from "@nextui-org/react";
-import React from "react";
-import Image from "next/image";
-import mail from "../_assets/images/gmail.png";
+"use client"
+import { Button, Input } from "@nextui-org/react"
+import React from "react"
+import Image from "next/image"
+import mail from "../_assets/images/gmail.png"
+import { useRouter } from "next/navigation"
 
-type Props = {};
+type Props = {}
 
 export default function Verify({}: Props) {
+  const router = useRouter()
   return (
     <section className="px-4 pt-9 font-lato">
       <div className="max-w-[580px] mx-auto flex flex-col justify-center items-center">
@@ -34,11 +36,12 @@ export default function Verify({}: Props) {
         <Button
           className="mt-7 h-11 text-base font-bold rounded-2xl"
           color="primary"
+          onClick={() => router.push("/onboarding")}
           fullWidth
         >
           Resend verification email
         </Button>
       </div>
     </section>
-  );
+  )
 }
