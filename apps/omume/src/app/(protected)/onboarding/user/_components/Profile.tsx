@@ -1,23 +1,23 @@
-"use client";
-import Button from "@nextdaysite/ui/button";
-import React from "react";
-import { useRouter } from "next/navigation";
-import { Select, SelectItem } from "@nextui-org/react";
+"use client"
+import Button from "@nextdaysite/ui/button"
+import React from "react"
+import { useRouter } from "next/navigation"
+import { Select, SelectItem } from "@nextui-org/react"
 
-type Props = {};
+type Props = {}
 
 const countries = [
   { key: "1", label: "United States" },
   { key: "2", label: "United Kingdom" },
   { key: "3", label: "Canada" },
-];
+]
 
 export default function Profile({}: Props) {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleContinue = () => {
-    router.push("/");
-  };
+    router.push("/")
+  }
   return (
     <div>
       <Select
@@ -84,7 +84,7 @@ export default function Profile({}: Props) {
         <Button
           color="primary"
           size="lg"
-          className="h-12 rounded-2xl"
+          className="h-12 rounded-2xl text-sm lg:text-base"
           radius="md"
           fullWidth
           onClick={handleContinue}
@@ -93,5 +93,5 @@ export default function Profile({}: Props) {
         </Button>
       </div>
     </div>
-  );
+  )
 }
