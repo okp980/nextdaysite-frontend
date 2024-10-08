@@ -1,14 +1,14 @@
-"use client"
-import { Button, Input } from "@nextui-org/react"
-import React from "react"
-import Image from "next/image"
-import mail from "../_assets/images/gmail.png"
-import { useRouter } from "next/navigation"
+"use client";
+import { Button, Input } from "@nextui-org/react";
+import React from "react";
+import Image from "next/image";
+import mail from "../_assets/images/gmail.png";
+import { useRouter } from "next/navigation";
 
-type Props = {}
+type Props = {};
 
 export default function Verify({}: Props) {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <section className="px-4 pt-9 font-lato">
       <div className="max-w-[580px] mx-auto flex flex-col justify-center items-center">
@@ -43,5 +43,5 @@ export default function Verify({}: Props) {
         </Button>
       </div>
     </section>
-  )
+  );
 }

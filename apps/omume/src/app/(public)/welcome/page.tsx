@@ -1,6 +1,6 @@
-import Companies from "./_components/Companies"
-import Features from "./_components/Features"
-import Hero from "./_components/Hero"
+import Companies from "./_components/Companies";
+import Features from "./_components/Features";
+import Hero from "./_components/Hero";
 
 export default function Welcome() {
   return (
@@ -11,5 +11,5 @@ export default function Welcome() {
       <Features invert />
       <Features />
     </div>
-  )
+  );
 }

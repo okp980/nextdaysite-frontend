@@ -1,5 +1,5 @@
-import type { Config } from "tailwindcss"
-import { nextui } from "@nextui-org/react"
+import type { Config } from "tailwindcss";
+import { nextui } from "@nextui-org/react";
 
 const config: Omit<Config, "content"> = {
   theme: {
@@ -43,5 +43,5 @@ const config: Omit<Config, "content"> = {
       },
     }),
   ],
-}
-export default config
+};
+export default config;

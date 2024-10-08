@@ -1,9 +1,9 @@
-import Image from "next/image"
-import dashboard from "./_assets/images/dashboard.jpg"
+import Image from "next/image";
+import dashboard from "./_assets/images/dashboard.jpg";
 export default function OnboardingLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <section className="lg:h-screen">
@@ -14,5 +14,5 @@ export default function OnboardingLayout({
         </div>
       </div>
     </section>
-  )
+  );
 }

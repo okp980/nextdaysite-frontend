@@ -1,14 +1,14 @@
-import React from "react"
-import klarna from "../_assets/images/klarna.png"
-import lego from "../_assets/images/lego.png"
-import nike from "../_assets/images/nike.png"
-import openai from "../_assets/images/openai.png"
-import pizza_hut from "../_assets/images/pizza_hut.png"
-import shopify from "../_assets/images/shopify.png"
-import zapier from "../_assets/images/zapier.png"
-import Image from "next/image"
+import React from "react";
+import klarna from "../_assets/images/klarna.png";
+import lego from "../_assets/images/lego.png";
+import nike from "../_assets/images/nike.png";
+import openai from "../_assets/images/openai.png";
+import pizza_hut from "../_assets/images/pizza_hut.png";
+import shopify from "../_assets/images/shopify.png";
+import zapier from "../_assets/images/zapier.png";
+import Image from "next/image";
 
-type Props = {}
+type Props = {};
 
 export default function Companies({}: Props) {
   return (
@@ -26,5 +26,5 @@ export default function Companies({}: Props) {
         <Image src={zapier} alt="zapier" width={85} height={24} />
       </div>
     </section>
-  )
+  );
 }

@@ -1,18 +1,18 @@
-"use client"
+"use client";
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
   Link,
-} from "@nextui-org/react"
-import { ReactElement } from "react"
+} from "@nextui-org/react";
+import { ReactElement } from "react";
 type Props = {
-  navLinks?: { label: string; route: string }[]
-  RightComponent?: ReactElement
-  activeLink?: string
-  isTransparent?: boolean
-}
+  navLinks?: { label: string; route: string }[];
+  RightComponent?: ReactElement;
+  activeLink?: string;
+  isTransparent?: boolean;
+};
 
 export default function Nav({ navLinks, RightComponent, activeLink }: Props) {
   return (
@@ -48,5 +48,5 @@ export default function Nav({ navLinks, RightComponent, activeLink }: Props) {
         <NavbarContent justify="end">{RightComponent}</NavbarContent>
       )}
     </Navbar>
-  )
+  );
 }
