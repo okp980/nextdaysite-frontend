@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 export default function Report({}: Props) {
   return (
@@ -19,5 +19,5 @@ export default function Report({}: Props) {
         stroke-linejoin="round"
       />
     </svg>
-  )
+  );
 }

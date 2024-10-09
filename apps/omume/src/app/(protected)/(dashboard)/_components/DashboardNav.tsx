@@ -1,14 +1,14 @@
-"use client"
-import Button from "@nextdaysite/ui/button"
-import { Divider } from "@nextui-org/react"
-import Link from "next/link"
-import React from "react"
-import Home from "../_assets/icons/Home"
-import Events from "../_assets/icons/Events"
-import Broadcast from "../_assets/icons/Broadcast"
-import Contact from "../_assets/icons/Contact"
-import Report from "../_assets/icons/Report"
-import Setting from "../_assets/icons/Setting"
+"use client";
+import Button from "@nextdaysite/ui/button";
+import { Divider } from "@nextui-org/react";
+import Link from "next/link";
+import React from "react";
+import Home from "../_assets/icons/Home";
+import Events from "../_assets/icons/Events";
+import Broadcast from "../_assets/icons/Broadcast";
+import Contact from "../_assets/icons/Contact";
+import Report from "../_assets/icons/Report";
+import Setting from "../_assets/icons/Setting";
 
 const Links: { label: string; route: string; icon: React.ReactElement }[] = [
   {
@@ -41,7 +41,7 @@ const Links: { label: string; route: string; icon: React.ReactElement }[] = [
     route: "/settings",
     icon: <Setting />,
   },
-]
+];
 
 export default function DashboardNav() {
   return (
@@ -75,5 +75,5 @@ export default function DashboardNav() {
         </div>
       </div>
     </div>
-  )
+  );
 }
