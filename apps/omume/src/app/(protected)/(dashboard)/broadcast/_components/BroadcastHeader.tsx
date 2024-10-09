@@ -1,8 +1,8 @@
-"use client"
-import React from "react"
-import Header from "../../_components/Header"
+"use client";
+import React from "react";
+import Header from "../../_components/Header";
 
-type Props = {}
+type Props = {};
 
 export default function BroadcastHeader({}: Props) {
   return (
@@ -12,5 +12,5 @@ export default function BroadcastHeader({}: Props) {
       buttonLabel="Send"
       onClick={() => {}}
     />
-  )
+  );
 }

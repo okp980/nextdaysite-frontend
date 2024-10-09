@@ -1,7 +1,7 @@
-import React from "react"
-import HomeHeader from "./_components/HomeHeader"
+import React from "react";
+import HomeHeader from "./_components/HomeHeader";
 
-type Props = {}
+type Props = {};
 
 export default function Page({}: Props) {
   return (
@@ -13,5 +13,5 @@ export default function Page({}: Props) {
         dicta ducimus hic aspernatur ratione pariatur molestias minima impedit!
       </p>
     </div>
-  )
+  );
 }

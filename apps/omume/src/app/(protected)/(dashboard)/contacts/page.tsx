@@ -1,12 +1,12 @@
-import React from "react"
-import ContactHeader from "./_components/ContactHeader"
+import React from "react";
+import ContactHeader from "./_components/ContactHeader";
 
-type Props = {}
+type Props = {};
 
 export default function Page({}: Props) {
   return (
     <div>
       <ContactHeader />
     </div>
-  )
+  );
 }
