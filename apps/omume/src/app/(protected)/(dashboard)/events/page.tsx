@@ -1,7 +1,12 @@
-import React from "react";
+import React from "react"
+import EventsHeader from "./_components/EventsHeader"
 
-type Props = {};
+type Props = {}
 
 export default function Page({}: Props) {
-  return <div>Events</div>;
+  return (
+    <div>
+      <EventsHeader />
+    </div>
+  )
 }
