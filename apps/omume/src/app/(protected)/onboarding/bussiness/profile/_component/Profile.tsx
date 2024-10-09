@@ -1,16 +1,16 @@
-"use client";
-import Button from "@nextdaysite/ui/button";
-import { Input, Textarea } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
-import React from "react";
+"use client"
+import Button from "@nextdaysite/ui/button"
+import { Input, Textarea } from "@nextui-org/react"
+import { useRouter } from "next/navigation"
+import React from "react"
 
-type Props = {};
+type Props = {}
 
 export default function Profile({}: Props) {
-  const router = useRouter();
+  const router = useRouter()
   const handleContinue = () => {
-    router.push("/");
-  };
+    router.push("/home")
+  }
   return (
     <div>
       <Input
@@ -78,5 +78,5 @@ export default function Profile({}: Props) {
         </Button>
       </div>
     </div>
-  );
+  )
 }
