@@ -1,8 +1,8 @@
-import React from "react"
-import HomeHeader from "./_components/HomeHeader"
-import Summary from "./_components/Summary"
+import React from "react";
+import HomeHeader from "./_components/HomeHeader";
+import Summary from "./_components/Summary";
 
-type Props = {}
+type Props = {};
 
 export default function Page({}: Props) {
   return (
@@ -17,5 +17,5 @@ export default function Page({}: Props) {
         }}
       />
     </div>
-  )
+  );
 }

@@ -1,14 +1,14 @@
-"use client"
-import Button from "@nextdaysite/ui/button"
-import React from "react"
-import { FiPlus } from "react-icons/fi"
+"use client";
+import Button from "@nextdaysite/ui/button";
+import React from "react";
+import { FiPlus } from "react-icons/fi";
 
 type Props = {
-  title: string
-  description: string
-  buttonLabel: string
-  onClick: () => void
-}
+  title: string;
+  description: string;
+  buttonLabel: string;
+  onClick: () => void;
+};
 
 export default function Header({
   title,
@@ -34,5 +34,5 @@ export default function Header({
         {buttonLabel}
       </Button>
     </div>
-  )
+  );
 }
