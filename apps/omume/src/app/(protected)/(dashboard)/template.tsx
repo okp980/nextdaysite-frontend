@@ -1,15 +1,15 @@
-"use client";
-import { PropsWithChildren } from "react";
-import DashboardNav from "./_components/DashboardNav";
-import Button from "@nextdaysite/ui/button";
-import Notification from "./_assets/icons/Notification";
-import { Avatar } from "@nextui-org/react";
+"use client"
+import { PropsWithChildren } from "react"
+import DashboardNav from "./_components/DashboardNav"
+import Button from "@nextdaysite/ui/button"
+import Notification from "./_assets/icons/Notification"
+import { Avatar } from "@nextui-org/react"
 
 export default function Template({ children }: PropsWithChildren) {
   return (
     <div className="h-screen grid grid-cols-[100px_1fr] lg:grid-cols-[320px_1fr] grid-rows-[80px_1fr]">
       <DashboardNav />
-      <header className="flex items-center justify-end px-10">
+      <header className="flex items-center justify-end px-12">
         <div className="flex gap-2">
           <Button isIconOnly startContent={<Notification />} variant="light" />
           <Avatar
@@ -19,7 +19,7 @@ export default function Template({ children }: PropsWithChildren) {
           />
         </div>
       </header>
-      <div className="p-10">{children}</div>
+      <div className="p-12">{children}</div>
     </div>
-  );
+  )
 }

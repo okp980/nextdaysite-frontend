@@ -1,17 +1,21 @@
-import React from "react";
-import HomeHeader from "./_components/HomeHeader";
+import React from "react"
+import HomeHeader from "./_components/HomeHeader"
+import Summary from "./_components/Summary"
 
-type Props = {};
+type Props = {}
 
 export default function Page({}: Props) {
   return (
     <div>
       <HomeHeader />
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex in sed
-        delectus ipsum et reiciendis quos corrupti non enim, accusamus quia
-        dicta ducimus hic aspernatur ratione pariatur molestias minima impedit!
-      </p>
+      <Summary
+        data={{
+          Upcoming_Events: 12,
+          Total_RSVPs: 2420,
+          Active_Events: 5,
+          Engagement_Rate: 68,
+        }}
+      />
     </div>
-  );
+  )
 }
