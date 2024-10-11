@@ -1,28 +1,28 @@
-import React from "react"
-import HomeHeader from "./_components/HomeHeader"
-import Summary from "./_components/Summary"
-import EventsTable from "./_components/EventsTable"
-import BroadcastTable, { Broadcast } from "./_components/BroadcastTable"
-import ContactTable, { Contact } from "./_components/ContactTable"
+import React from "react";
+import HomeHeader from "./_components/HomeHeader";
+import Summary from "./_components/Summary";
+import EventsTable from "./_components/EventsTable";
+import BroadcastTable, { Broadcast } from "./_components/BroadcastTable";
+import ContactTable, { Contact } from "./_components/ContactTable";
 
-type Props = {}
+type Props = {};
 const eventsColumns = [
   { name: "Event Title", uid: "event_title" },
   { name: "Date & Time", uid: "date_and_time" },
   { name: "RSVPs", uid: "rsvps" },
   { name: "Venue", uid: "venue" },
   { name: "", uid: "action" },
-]
+];
 const broadcastColumns = [
   { name: "Event Title", uid: "event_title" },
   { name: "Channel", uid: "channel" },
   { name: "Status", uid: "status" },
-]
+];
 const contactColumns = [
   { name: "Contacts", uid: "contact" },
   { name: "View", uid: "view" },
   { name: "Edit", uid: "edit" },
-]
+];
 
 const events = [
   {
@@ -49,7 +49,7 @@ const events = [
     venue: "Innovation Hub",
     action: "",
   },
-]
+];
 
 const broadcasts = [
   {
@@ -64,7 +64,7 @@ const broadcasts = [
     channel: "Facebook",
     status: "failed",
   },
-]
+];
 const contacts = [
   {
     id: 1,
@@ -87,7 +87,7 @@ const contacts = [
     view: "/contact/details/1",
     edit: "/contact/details/1",
   },
-]
+];
 
 export default function Page({}: Props) {
   return (
@@ -113,5 +113,5 @@ export default function Page({}: Props) {
         />
       </div>
     </div>
-  )
+  );
 }

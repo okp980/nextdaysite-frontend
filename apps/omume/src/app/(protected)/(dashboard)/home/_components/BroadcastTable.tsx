@@ -1,52 +1,52 @@
-"use client"
-import React from "react"
+"use client";
+import React from "react";
 import Table, {
   HeaderButton,
   BaseData,
   BaseTableColumn,
   StatusChip,
-} from "@nextdaysite/ui/table"
+} from "@nextdaysite/ui/table";
 
 export interface Broadcast extends BaseData {
-  event_title: string
-  channel: string
-  status: "sent" | "failed"
+  event_title: string;
+  channel: string;
+  status: "sent" | "failed";
 }
 
 const statusColorMap = {
   sent: "success",
   failed: "danger",
   pending: "warning",
-} as const
+} as const;
 
 type Props = {
-  broadcasts: Broadcast[]
-  columns: BaseTableColumn[]
-}
+  broadcasts: Broadcast[];
+  columns: BaseTableColumn[];
+};
 
 export default function BroadcastTable({ broadcasts, columns }: Props) {
   const renderCell = React.useCallback(
     (broadcast: Broadcast, columnKey: keyof Broadcast) => {
-      const cellValue = broadcast[columnKey]
+      const cellValue = broadcast[columnKey];
 
       switch (columnKey) {
         case "event_title":
-          return <p>{broadcast.event_title}</p>
+          return <p>{broadcast.event_title}</p>;
         case "channel":
-          return <p>{broadcast.channel}</p>
+          return <p>{broadcast.channel}</p>;
         case "status":
           return (
             <StatusChip
               status={statusColorMap[broadcast.status]}
               text={broadcast.status}
             />
-          )
+          );
         default:
-          return cellValue
+          return cellValue;
       }
     },
-    []
-  )
+    [],
+  );
 
   return (
     <Table
@@ -59,5 +59,5 @@ export default function BroadcastTable({ broadcasts, columns }: Props) {
       columns={columns}
       renderCell={renderCell}
     />
-  )
+  );
 }

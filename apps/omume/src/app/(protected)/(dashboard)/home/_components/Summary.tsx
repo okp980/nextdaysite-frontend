@@ -1,17 +1,17 @@
-"use client"
-import { Card, CardBody, Chip } from "@nextui-org/react"
-import { FaArrowUp } from "react-icons/fa"
-import React from "react"
-import clx from "classnames"
+"use client";
+import { Card, CardBody, Chip } from "@nextui-org/react";
+import { FaArrowUp } from "react-icons/fa";
+import React from "react";
+import clx from "classnames";
 
 type Props = {
   data: {
-    Upcoming_Events: number
-    Total_RSVPs: number
-    Active_Events: number
-    Engagement_Rate: number
-  }
-}
+    Upcoming_Events: number;
+    Total_RSVPs: number;
+    Active_Events: number;
+    Engagement_Rate: number;
+  };
+};
 
 export default function Summary({ data }: Props) {
   return (
@@ -43,5 +43,5 @@ export default function Summary({ data }: Props) {
         </Card>
       ))}
     </div>
-  )
+  );
 }

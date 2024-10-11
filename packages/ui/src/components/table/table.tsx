@@ -1,5 +1,5 @@
-"use client"
-import React from "react"
+"use client";
+import React from "react";
 import {
   Button,
   Chip,
@@ -11,28 +11,28 @@ import {
   TableHeaderProps,
   TableProps,
   TableRow,
-} from "@nextui-org/react"
-import clx from "classnames"
+} from "@nextui-org/react";
+import clx from "classnames";
 
 export interface BaseTableColumn {
-  uid: string
-  name: string
-  align?: "start" | "center" | "end"
+  uid: string;
+  name: string;
+  align?: "start" | "center" | "end";
 }
 export interface BaseData {
-  id: number
+  id: number;
 }
 
 interface TableInterface<T, D> {
-  title: string
-  description: string
-  renderHeaderChip?: () => React.ReactNode
-  renderHeaderBtn?: () => React.ReactNode
-  tableProps?: TableProps
-  tableHeaderProps?: TableHeaderProps<T>
-  columns: T[]
-  data: D[]
-  renderCell: (item: D, columnKey: keyof D) => React.ReactNode
+  title: string;
+  description: string;
+  renderHeaderChip?: () => React.ReactNode;
+  renderHeaderBtn?: () => React.ReactNode;
+  tableProps?: TableProps;
+  tableHeaderProps?: TableHeaderProps<T>;
+  columns: T[];
+  data: D[];
+  renderCell: (item: D, columnKey: keyof D) => React.ReactNode;
 }
 
 export default function <T extends BaseTableColumn, D extends BaseData>({
@@ -97,7 +97,7 @@ export default function <T extends BaseTableColumn, D extends BaseData>({
         </TableBody>
       </Table>
     </div>
-  )
+  );
 }
 
 export const HeaderChip = ({ text }: { text: string }) => {
@@ -105,14 +105,14 @@ export const HeaderChip = ({ text }: { text: string }) => {
     <Chip className="bg-[#F9F5FF] text-primary border border-[#E9D7FE]">
       {text}
     </Chip>
-  )
-}
+  );
+};
 export const StatusChip = ({
   status,
   text,
 }: {
-  status: "success" | "danger" | "warning"
-  text: string
+  status: "success" | "danger" | "warning";
+  text: string;
 }) => {
   return (
     <Chip
@@ -127,15 +127,15 @@ export const StatusChip = ({
     >
       {text}
     </Chip>
-  )
-}
+  );
+};
 
 export const HeaderButton = ({
   label,
   onClick,
 }: {
-  label: string
-  onClick: () => void
+  label: string;
+  onClick: () => void;
 }) => {
   return (
     <Button
@@ -146,5 +146,5 @@ export const HeaderButton = ({
     >
       {label}
     </Button>
-  )
-}
+  );
+};
