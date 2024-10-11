@@ -1,14 +1,14 @@
-"use client"
-import React from "react"
-import { Card, CardBody } from "@nextui-org/react"
-import Button from "@nextdaysite/ui/button"
-import Image from "next/image"
+"use client";
+import React from "react";
+import { Card, CardBody } from "@nextui-org/react";
+import Button from "@nextdaysite/ui/button";
+import Image from "next/image";
 
-import x from "../_assets/images/x.png"
-import tiktok from "../_assets/images/tiktok.png"
-import facebook from "../_assets/images/facebook.png"
-import youtube from "../_assets/images/youtube.png"
-type Props = {}
+import x from "../_assets/images/x.png";
+import tiktok from "../_assets/images/tiktok.png";
+import facebook from "../_assets/images/facebook.png";
+import youtube from "../_assets/images/youtube.png";
+type Props = {};
 
 export default function Hero({}: Props) {
   return (
@@ -66,5 +66,5 @@ export default function Hero({}: Props) {
         </div>
       </div>
     </section>
-  )
+  );
 }
