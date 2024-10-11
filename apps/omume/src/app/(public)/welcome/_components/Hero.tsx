@@ -1,20 +1,20 @@
-"use client";
-import React from "react";
-import { Card, CardBody } from "@nextui-org/react";
-import Button from "@nextdaysite/ui/button";
-import Image from "next/image";
+"use client"
+import React from "react"
+import { Card, CardBody } from "@nextui-org/react"
+import Button from "@nextdaysite/ui/button"
+import Image from "next/image"
 
-import x from "../_assets/images/x.png";
-import tiktok from "../_assets/images/tiktok.png";
-import facebook from "../_assets/images/facebook.png";
-import youtube from "../_assets/images/youtube.png";
-type Props = {};
+import x from "../_assets/images/x.png"
+import tiktok from "../_assets/images/tiktok.png"
+import facebook from "../_assets/images/facebook.png"
+import youtube from "../_assets/images/youtube.png"
+type Props = {}
 
 export default function Hero({}: Props) {
   return (
     <section className="px-5 bg-gradient-to-b from-[#F4F3FF] to-[#FFFFFF] ">
-      <div className="bg-[url('/images/background-pattern.png')] bg-contain pt-24">
-        <div className="container m-auto lg:flex pt-10 lg:pt-24">
+      <div className="bg-[url('/images/background-pattern.png')] bg-contain">
+        <div className="container m-auto lg:flex pt-36 lg:pt-56">
           <div className="font-dm-sans flex flex-1">
             <div>
               <Card
@@ -66,5 +66,5 @@ export default function Hero({}: Props) {
         </div>
       </div>
     </section>
-  );
+  )
 }
