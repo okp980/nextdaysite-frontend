@@ -1,14 +1,16 @@
-"use client";
-import Button from "@nextdaysite/ui/button";
-import { Divider } from "@nextui-org/react";
-import Link from "next/link";
-import React from "react";
-import Home from "../_assets/icons/Home";
-import Events from "../_assets/icons/Events";
-import Broadcast from "../_assets/icons/Broadcast";
-import Contact from "../_assets/icons/Contact";
-import Report from "../_assets/icons/Report";
-import Setting from "../_assets/icons/Setting";
+"use client"
+import Button from "@nextdaysite/ui/button"
+import { Divider } from "@nextui-org/react"
+import Link from "next/link"
+import React from "react"
+import Home from "../_assets/icons/Home"
+import Events from "../_assets/icons/Events"
+import Broadcast from "../_assets/icons/Broadcast"
+import Contact from "../_assets/icons/Contact"
+import Report from "../_assets/icons/Report"
+import Setting from "../_assets/icons/Setting"
+import { usePathname } from "next/navigation"
+import clx from "classnames"
 
 const Links: { label: string; route: string; icon: React.ReactElement }[] = [
   {
@@ -41,9 +43,10 @@ const Links: { label: string; route: string; icon: React.ReactElement }[] = [
     route: "/settings",
     icon: <Setting />,
   },
-];
+]
 
 export default function DashboardNav() {
+  const pathname = usePathname()
   return (
     <div className="bg-white border-r border-r-[#E4E7EC] row-span-2 flex flex-col ">
       <div className="px-2 lg:px-5 flex flex-col flex-1">
@@ -58,7 +61,14 @@ export default function DashboardNav() {
             <Link
               href={link.route}
               key={index}
-              className="transition ease-in-out flex justify-center lg:justify-start w-full gap-3 font-semibold text-medium font-inter text-[#344054] hover:bg-[#F9F5FF] hover:text-primary rounded-md py-2 px-4"
+              className={clx(
+                "transition ease-in-out flex justify-center lg:justify-start w-full gap-3 font-semibold text-medium font-inter  rounded-md py-2 px-4",
+                {
+                  "text-[#344054] hover:bg-[#F9F5FF] hover:text-primary":
+                    link.route !== pathname,
+                  "text-primary bg-[#F9F5FF]": link.route === pathname,
+                }
+              )}
             >
               {link.icon} <span className="hidden lg:block">{link.label}</span>
             </Link>
@@ -75,5 +85,5 @@ export default function DashboardNav() {
         </div>
       </div>
     </div>
-  );
+  )
 }

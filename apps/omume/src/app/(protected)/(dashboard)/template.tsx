@@ -1,9 +1,9 @@
-"use client";
-import { PropsWithChildren } from "react";
-import DashboardNav from "./_components/DashboardNav";
-import Button from "@nextdaysite/ui/button";
-import Notification from "./_assets/icons/Notification";
-import { Avatar } from "@nextui-org/react";
+"use client"
+import { PropsWithChildren } from "react"
+import DashboardNav from "./_components/DashboardNav"
+import Button from "@nextdaysite/ui/button"
+import Notification from "./_assets/icons/Notification"
+import { Avatar } from "@nextui-org/react"
 
 export default function Template({ children }: PropsWithChildren) {
   return (
@@ -19,7 +19,9 @@ export default function Template({ children }: PropsWithChildren) {
           />
         </div>
       </header>
-      <div className="p-12">{children}</div>
+      <div className="p-12 lg:overflow-hidden lg:overflow-y-scroll">
+        {children}
+      </div>
     </div>
-  );
+  )
 }
