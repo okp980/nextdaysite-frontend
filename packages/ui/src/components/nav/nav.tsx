@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import {
   Navbar,
   NavbarBrand,
@@ -9,16 +9,16 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   extendVariants,
-} from "@nextui-org/react";
-import React, { ReactElement } from "react";
-import { HiMenuAlt3 } from "react-icons/hi";
+} from "@nextui-org/react"
+import React, { ReactElement } from "react"
+import { HiMenuAlt3 } from "react-icons/hi"
 type Props = {
-  navLinks?: { label: string; route: string }[];
-  RightComponent?: ReactElement;
-  activeLink?: string;
-  isTransparent?: boolean;
-  menuItems?: { label: string; route: string }[];
-};
+  navLinks?: { label: string; route: string }[]
+  RightComponent?: ReactElement
+  activeLink?: string
+  isTransparent?: boolean
+  menuItems?: { label: string; route: string }[]
+}
 
 const CustomLink = extendVariants(Link, {
   variants: {
@@ -26,7 +26,7 @@ const CustomLink = extendVariants(Link, {
       foreground: "text-[#290619]",
     },
   },
-});
+})
 
 export default function Nav({
   navLinks,
@@ -34,10 +34,11 @@ export default function Nav({
   activeLink,
   menuItems,
 }: Props) {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   return (
     <Navbar
       maxWidth="full"
+      isBlurred={false}
       height={80}
       classNames={{
         brand: "text-2xl font-fugaz text-primary",
@@ -105,5 +106,5 @@ export default function Nav({
         </NavbarMenu>
       )}
     </Navbar>
-  );
+  )
 }
