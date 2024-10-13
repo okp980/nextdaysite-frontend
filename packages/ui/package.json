@@ -10,7 +10,6 @@
     "./code": "./src/code.tsx",
     "./theme-switch": "./src/components/theme-switch/theme-switch.tsx",
     "./nav-bar": "./src/components/nav/nav.tsx",
-    "./signup": "./src/components/signup/signup.tsx",
     "./table": "./src/components/table/table.tsx"
   },
   "scripts": {
