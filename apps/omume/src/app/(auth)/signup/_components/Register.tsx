@@ -1,9 +1,9 @@
-"use client"
-import React from "react"
-import Link from "next/link"
-import SignupForm from "./SignupForm"
+"use client";
+import React from "react";
+import Link from "next/link";
+import SignupForm from "./SignupForm";
 
-type Props = {}
+type Props = {};
 
 export default function Register({}: Props) {
   return (
@@ -19,5 +19,5 @@ export default function Register({}: Props) {
         </Link>
       </p>
     </section>
-  )
+  );
 }

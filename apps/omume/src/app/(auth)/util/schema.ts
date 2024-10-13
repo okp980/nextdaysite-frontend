@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const registerSchema = z.object({
   email: z
@@ -28,15 +28,15 @@ export const registerSchema = z.object({
     .min(8, "contains at least 8 characters")
     .refine(
       (value) => {
-        const hasLowercase = /[a-z]/.test(value)
-        const hasUppercase = /[A-Z]/.test(value)
-        return hasLowercase && hasUppercase
+        const hasLowercase = /[a-z]/.test(value);
+        const hasUppercase = /[A-Z]/.test(value);
+        return hasLowercase && hasUppercase;
       },
       {
         message: "contains both lower (a-z) and upper case letters (A-Z)",
-      }
+      },
     )
     .refine((value) => /[0-9!@#$%^&*(),.?":{}|<>]/.test(value), {
       message: "contains at least one number (0-9) or a symbol",
     }),
-})
+});
