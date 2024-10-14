@@ -1,7 +1,7 @@
-import { PropsWithChildren } from "react"
-import NavBar from "./welcome/_components/NavBar"
+import { PropsWithChildren } from "react";
+import NavBar from "./welcome/_components/NavBar";
 
-type Props = {}
+type Props = {};
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
@@ -11,5 +11,5 @@ export default function Layout({ children }: PropsWithChildren) {
       </div>
       {children}
     </div>
-  )
+  );
 }

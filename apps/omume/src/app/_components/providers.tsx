@@ -1,9 +1,9 @@
-import { SessionProvider } from "next-auth/react"
-import React, { PropsWithChildren } from "react"
-import UIProvider from "@nextdaysite/ui/ui-provider"
-import ThemeProvider from "@nextdaysite/ui/theme-provider"
+import { SessionProvider } from "next-auth/react";
+import React, { PropsWithChildren } from "react";
+import UIProvider from "@nextdaysite/ui/ui-provider";
+import ThemeProvider from "@nextdaysite/ui/theme-provider";
 
-type Props = {}
+type Props = {};
 
 export default function Providers({ children }: PropsWithChildren) {
   return (
@@ -13,5 +13,5 @@ export default function Providers({ children }: PropsWithChildren) {
         <ThemeProvider>{children} </ThemeProvider>
       </UIProvider>
     </SessionProvider>
-  )
+  );
 }
