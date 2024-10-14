@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import {
   Button,
   Card,
@@ -6,27 +6,27 @@ import {
   CardFooter,
   CardHeader,
   Input,
-} from "@nextui-org/react";
-import React, { useState } from "react";
-import Google from "../../assets/svg/Google";
-import Facebook from "../../assets/svg/Facebook";
-import Apple from "../../assets/svg/Apple";
-import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, registerSchema } from "../../util/schema";
-import { signIn, useSession } from "next-auth/react";
-import { Session } from "next-auth";
+} from "@nextui-org/react"
+import React, { useState } from "react"
+import Google from "../../assets/svg/Google"
+import Facebook from "../../assets/svg/Facebook"
+import Apple from "../../assets/svg/Apple"
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { Controller, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { loginSchema, registerSchema } from "../../util/schema"
+import { signIn, useSession } from "next-auth/react"
+import { Session } from "next-auth"
 
 type Props = {
-  session: Session | null;
-};
+  session: Session | null
+}
 
 export default function SigninForm({ session }: Props) {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const router = useRouter();
+  const [isVisible, setIsVisible] = React.useState(false)
+  const router = useRouter()
 
   const {
     control,
@@ -35,44 +35,62 @@ export default function SigninForm({ session }: Props) {
   } = useForm({
     defaultValues: { identifier: "", password: "" },
     resolver: zodResolver(loginSchema),
-  });
+  })
 
-  const toggleVisibility = () => setIsVisible(!isVisible);
-  const signInWithGoogleOnClick = () => {};
-  const signInWithFacebookOnClick = () => {};
-  const signInWithAppleOnClick = () => {};
+  const toggleVisibility = () => setIsVisible(!isVisible)
+  const signInWithGoogleOnClick = () => {}
+  const signInWithFacebookOnClick = () => {}
+  const signInWithAppleOnClick = () => {}
 
   const onSubmit = async (data: any) => {
     const res: any = await signIn("credentials", {
       email: data.identifier,
       password: data.password,
       redirect: false,
-    });
+    })
 
     if (res.ok) {
       const callbackUrl =
         // @ts-ignore
         session?.user?.data?.user?.role === "user"
           ? "/user/home"
-          : "/bussiness/home";
-      router.push(callbackUrl);
+          : "/bussiness/home"
+      router.push(callbackUrl)
     }
-  };
+  }
 
   return (
-    <section className="flex flex-col gap-5 justify-center items-center">
+    <section className="">
       <Card
-        className="max-w-[560px] font-lato p-5"
+        className=" font-lato px-5 py-8"
         // @ts-ignore
         classNames={{
           base: ["bg-transparent lg:bg-white shadow-none lg:shadow-md"],
         }}
       >
-        <CardHeader className="flex-col items-start ">
-          <p className="font-medium text-base">Sign in with email</p>
-        </CardHeader>
-        <CardBody>
+        <div>
           <div className="flex flex-col gap-4 ">
+            <Button
+              onClick={signInWithGoogleOnClick}
+              variant="bordered"
+              className="border shadow-sm text-base font-bold text-[#344054]"
+            >
+              <Google /> Sign in with Google
+            </Button>
+            <Button
+              onClick={signInWithFacebookOnClick}
+              variant="bordered"
+              className="border shadow-sm text-base font-bold text-[#344054]"
+            >
+              <Facebook /> Sign in with Facebook
+            </Button>
+            <Button
+              onClick={signInWithAppleOnClick}
+              variant="bordered"
+              className="border shadow-sm text-base font-bold text-[#344054] mb-5"
+            >
+              <Apple /> Sign in with Apple
+            </Button>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Controller
                 name="identifier"
@@ -140,51 +158,12 @@ export default function SigninForm({ session }: Props) {
                 isDisabled={!isValid || isSubmitting}
                 isLoading={isSubmitting}
               >
-                Submit
+                Sign In
               </Button>
             </form>
-            <Button
-              onClick={signInWithGoogleOnClick}
-              variant="bordered"
-              className="border shadow-sm text-base font-bold text-[#344054]"
-            >
-              <Google /> Sign in with Google
-            </Button>
-            <Button
-              onClick={signInWithFacebookOnClick}
-              variant="bordered"
-              className="border shadow-sm text-base font-bold text-[#344054]"
-            >
-              <Facebook /> Sign in with Facebook
-            </Button>
-            <Button
-              onClick={signInWithAppleOnClick}
-              variant="bordered"
-              className="border shadow-sm text-base font-bold text-[#344054] mb-5"
-            >
-              <Apple /> Sign in with Apple
-            </Button>
           </div>
-        </CardBody>
-        <CardFooter>
-          <p className="font-lato text-sm">
-            By continuing with Google, Apple, or Email, you agree to Omume’s{" "}
-            <Link
-              className="text-primary underline underline-offset-2"
-              href="#"
-            >
-              Terms of Service
-            </Link>{" "}
-            and{" "}
-            <Link
-              className="text-primary underline underline-offset-2"
-              href="#"
-            >
-              Privacy Policy
-            </Link>
-          </p>
-        </CardFooter>
+        </div>
       </Card>
     </section>
-  );
+  )
 }

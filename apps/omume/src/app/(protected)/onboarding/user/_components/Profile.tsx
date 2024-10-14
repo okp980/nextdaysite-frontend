@@ -1,103 +1,95 @@
-"use client";
-import Button from "@nextdaysite/ui/button";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Select, SelectItem } from "@nextui-org/react";
-import { useOnboardingProgressStore } from "../../_util/store";
-import { Country, State, City } from "country-state-city";
-import { registerUser } from "../../_util/action";
-import {
-  useDetailsStore,
-  useInterestsStore,
-  useRoleStore,
-} from "@/app/(auth)/util/store";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { onBoardUserSchema } from "../_util/schema";
-import axios from "axios";
+"use client"
+import Button from "@nextdaysite/ui/button"
+import React, { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import { Select, SelectItem } from "@nextui-org/react"
+import { useOnboardingProgressStore } from "../../_util/store"
+import { Country, State, City } from "country-state-city"
+import { useInterestsStore } from "@/app/(auth)/util/store"
+import { Controller, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { onBoardUserSchema } from "../_util/schema"
+import axios from "axios"
+import { useSession } from "next-auth/react"
 
-type Props = {};
+type Props = {}
 
 export default function Profile({}: Props) {
-  const updateProgressBar = useOnboardingProgressStore(
-    (state) => state.setStep,
-  );
-  const { details } = useDetailsStore.getState();
-  const { role } = useRoleStore.getState();
-  const { interests } = useInterestsStore.getState();
-  const [error, setError] = useState<any>(null);
+  const updateProgressBar = useOnboardingProgressStore((state) => state.setStep)
+  const { interests } = useInterestsStore.getState()
+  const [error, setError] = useState<any>(null)
+  const { data: session } = useSession()
 
-  const register = registerUser.bind(null, { ...details, role, interests });
-
-  const router = useRouter();
+  const router = useRouter()
 
   const {
     control,
     handleSubmit,
     watch,
     formState: { isValid, dirtyFields, isSubmitting },
-    setValue,
   } = useForm({
     defaultValues: { country: "", state: "", city: "", timezone: "" },
     resolver: zodResolver(onBoardUserSchema),
-  });
+  })
 
   useEffect(() => {
     if (dirtyFields.timezone) {
-      updateProgressBar(100);
-      return;
+      updateProgressBar(100)
+      return
     }
     if (dirtyFields.city) {
-      updateProgressBar(85);
-      return;
+      updateProgressBar(85)
+      return
     }
     if (dirtyFields.state) {
-      updateProgressBar(65);
-      return;
+      updateProgressBar(65)
+      return
     }
     if (dirtyFields.country) {
-      updateProgressBar(50);
-      return;
+      updateProgressBar(50)
+      return
     }
 
-    updateProgressBar(40);
+    updateProgressBar(40)
   }, [
     dirtyFields.country,
     dirtyFields.state,
     dirtyFields.city,
     dirtyFields.timezone,
-  ]);
+  ])
 
   const handleContinue = async (data: any) => {
     const user = {
-      first_name: details?.fullName.split(" ")[0],
-      last_name: details?.fullName.split(" ")[1],
-      email: details?.email,
-      phone: details?.phoneNumber,
-      "Auth Type": "Password",
-      password: details?.password,
-      "Google UUID": "",
-      "Facebook UUID": "",
-      "Apple UUID": "",
-      "Profile Photo URL": "",
       Interests: interests,
       City: data.city,
       State: State.getStateByCode(data?.state as string)?.name,
       Country: Country.getCountryByCode(data?.country as string)?.name,
       Timezone: data?.timezone,
-      Role: "Attendee",
-    };
-    try {
-      setError(null);
-      const res = await axios.post("/v1/auth/register", user, {
-        baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-      });
-      router.push("/welcome");
-    } catch (error: any) {
-      setError(error.response?.data);
-      console.log(error.response?.data);
     }
-  };
+    try {
+      setError(null)
+
+      const res = await axios.patch(
+        // @ts-ignore
+        `/v1/users/${session?.user?.user?.id}`,
+        user,
+        {
+          baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+          headers: {
+            // @ts-ignore
+            Authorization: `Bearer ${session?.user?.token.accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      console.log("res", res)
+
+      router.push("/user/home")
+    } catch (error: any) {
+      setError(error.response?.data)
+      console.log(error.response?.data)
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit(handleContinue)}>
@@ -178,7 +170,7 @@ export default function Profile({}: Props) {
                   <SelectItem key={city.name} value={city.name}>
                     {city.name}
                   </SelectItem>
-                ),
+                )
               )}
             </Select>
           )}
@@ -207,7 +199,7 @@ export default function Profile({}: Props) {
                   <SelectItem key={zone.gmtOffsetName}>
                     {zone.gmtOffsetName}
                   </SelectItem>
-                ),
+                )
               )}
             </Select>
           )}
@@ -229,5 +221,5 @@ export default function Profile({}: Props) {
         </Button>
       </div>
     </form>
-  );
+  )
 }
