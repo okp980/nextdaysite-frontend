@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import {
   Button,
   Card,
@@ -6,27 +6,31 @@ import {
   CardFooter,
   CardHeader,
   Input,
-} from "@nextui-org/react";
-import React, { ReactElement, useState } from "react";
-import Google from "../../assets/svg/Google";
-import Facebook from "../../assets/svg/Facebook";
-import Apple from "../../assets/svg/Apple";
-import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema } from "../../util/schema";
-import PasswordCheck from "./PasswordCheck";
-import { useDetailsStore } from "../../util/store";
+} from "@nextui-org/react"
+import React, { ReactElement, useState } from "react"
+import Google from "../../assets/svg/Google"
+import Facebook from "../../assets/svg/Facebook"
+import Apple from "../../assets/svg/Apple"
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { Controller, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { registerSchema } from "../../util/schema"
+import PasswordCheck from "./PasswordCheck"
+import { useDetailsStore } from "../../util/store"
+import axios from "axios"
+import { signIn } from "next-auth/react"
 
-type Props = {};
+type Props = {}
 
 export default function SignupForm({}: Props) {
-  const [step, setStep] = useState<1 | 2>(1);
-  const [isVisible, setIsVisible] = React.useState(false);
-  const updateDetails = useDetailsStore((state) => state.setDetails);
-  const router = useRouter();
+  const [step, setStep] = useState<1 | 2>(1)
+  const [isVisible, setIsVisible] = React.useState(false)
+  const updateDetails = useDetailsStore((state) => state.setDetails)
+  const [error, setError] = useState<any>(null)
+
+  const router = useRouter()
 
   // Form 1
   const {
@@ -36,7 +40,7 @@ export default function SignupForm({}: Props) {
   } = useForm({
     defaultValues: { email: "" },
     resolver: zodResolver(registerSchema.pick({ email: true })),
-  });
+  })
 
   // Form 2
   const {
@@ -44,27 +48,47 @@ export default function SignupForm({}: Props) {
     control,
     handleSubmit,
     watch,
-    formState: { isValid, dirtyFields },
+    formState: { isValid, dirtyFields, isSubmitting },
     setValue,
   } = useForm({
     defaultValues: { email: "", password: "", phoneNumber: "", fullName: "" },
     resolver: zodResolver(registerSchema),
-  });
+  })
 
-  const toggleVisibility = () => setIsVisible(!isVisible);
-  const signInWithGoogleOnClick = () => {};
-  const signInWithFacebookOnClick = () => {};
-  const signInWithAppleOnClick = () => {};
+  const toggleVisibility = () => setIsVisible(!isVisible)
+  const signInWithGoogleOnClick = () => {}
+  const signInWithFacebookOnClick = () => {}
+  const signInWithAppleOnClick = () => {}
 
   const onSubmitFormOne = (data: any) => {
-    setValue("email", data.email);
-    setStep(2);
-  };
+    setValue("email", data.email)
+    setStep(2)
+  }
 
-  const onSubmitFormTwo = (data: any) => {
-    updateDetails(data);
-    router.push("/onboarding");
-  };
+  const onSubmitFormTwo = async (data: any) => {
+    const user = {
+      first_name: data?.fullName.split(" ")[0],
+      last_name: data?.fullName.split(" ")[1],
+      email: data?.email,
+      phone: data?.phoneNumber,
+      "Auth Type": "Password",
+      password: data?.password,
+    }
+    try {
+      setError(null)
+      await axios.post("/v1/auth/register", user, {
+        baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+      })
+      await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: true,
+        redirectTo: "/onboarding",
+      })
+    } catch (error: any) {
+      setError(error.response?.data)
+    }
+  }
   return (
     <section className="flex flex-col gap-5 justify-center items-center">
       <Card
@@ -262,10 +286,14 @@ export default function SignupForm({}: Props) {
                   />
                 </div>
               )}
+              {error && (
+                <p className="my-5 text-sm text-danger-500">{error.message}</p>
+              )}
               <Button
                 className="w-full mt-7 h-11 text-base font-bold rounded-2xl"
                 color={isValid ? "primary" : "default"}
                 isDisabled={!isValid}
+                isLoading={isSubmitting}
                 type="submit"
               >
                 Continue
@@ -293,5 +321,5 @@ export default function SignupForm({}: Props) {
         </CardFooter>
       </Card>
     </section>
-  );
+  )
 }
