@@ -1,15 +1,15 @@
-"use client"
-import { Card, CardBody, Chip } from "@nextui-org/react"
-import React, { useEffect, useState } from "react"
-import Interest from "../_assets/svg/Interest"
-import CheckerFilled from "../../_assets/svg/CheckerFilled"
-import CheckerEmpty from "../../_assets/svg/CheckerEmpty"
-import { useRouter } from "next/navigation"
-import Button from "@nextdaysite/ui/button"
-import { useOnboardingProgressStore } from "../../_util/store"
-import { useInterestsStore } from "@/app/(auth)/util/store"
+"use client";
+import { Card, CardBody, Chip } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
+import Interest from "../_assets/svg/Interest";
+import CheckerFilled from "../../_assets/svg/CheckerFilled";
+import CheckerEmpty from "../../_assets/svg/CheckerEmpty";
+import { useRouter } from "next/navigation";
+import Button from "@nextdaysite/ui/button";
+import { useOnboardingProgressStore } from "../../_util/store";
+import { useInterestsStore } from "@/app/(auth)/util/store";
 
-type Props = {}
+type Props = {};
 
 const interests = [
   "Traveling",
@@ -30,25 +30,27 @@ const interests = [
   "Fitness",
   "Cycling",
   "Painting",
-]
+];
 
 function Interests({}: Props) {
-  const router = useRouter()
-  const updateProgressBar = useOnboardingProgressStore((state) => state.setStep)
-  const updateInterests = useInterestsStore((state) => state.setInterests)
+  const router = useRouter();
+  const updateProgressBar = useOnboardingProgressStore(
+    (state) => state.setStep,
+  );
+  const updateInterests = useInterestsStore((state) => state.setInterests);
 
-  const [actives, setActives] = useState<string[]>([])
+  const [actives, setActives] = useState<string[]>([]);
 
   useEffect(() => {
-    updateProgressBar(25)
-  }, [])
+    updateProgressBar(25);
+  }, []);
   const handleContinue = () => {
-    updateInterests(interests)
-    router.push("/onboarding/user/profile")
-  }
+    updateInterests(interests);
+    router.push("/onboarding/user/profile");
+  };
   const handleClick = (interest: string) => {
-    setActives((prev) => [...prev, interest])
-  }
+    setActives((prev) => [...prev, interest]);
+  };
   return (
     <div>
       <div className="grid grid-cols-3 lg:grid-cols-4 gap-4">
@@ -90,7 +92,7 @@ function Interests({}: Props) {
         </Button>
       </div>
     </div>
-  )
+  );
 }
 
-export default Interests
+export default Interests;

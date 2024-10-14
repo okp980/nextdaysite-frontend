@@ -1,5 +1,5 @@
-import { create } from "zustand"
-import { devtools, persist } from "zustand/middleware"
+import { create } from "zustand";
+import { devtools, persist } from "zustand/middleware";
 import {
   BioDataAction,
   BioDataState,
@@ -9,7 +9,7 @@ import {
   InterestsState,
   RoleAction,
   RoleState,
-} from "./types"
+} from "./types";
 
 export const useDetailsStore = create<DetailsState & DetailsAction>()(
   devtools(
@@ -19,10 +19,10 @@ export const useDetailsStore = create<DetailsState & DetailsAction>()(
         setDetails: (details) => set({ details }),
         resetDetails: () => set({ details: null }),
       }),
-      { name: "details" }
-    )
-  )
-)
+      { name: "details" },
+    ),
+  ),
+);
 export const useRoleStore = create<RoleState & RoleAction>()(
   devtools(
     persist(
@@ -31,10 +31,10 @@ export const useRoleStore = create<RoleState & RoleAction>()(
         setRole: (role) => set({ role }),
         resetRole: () => set({ role: null }),
       }),
-      { name: "role" }
-    )
-  )
-)
+      { name: "role" },
+    ),
+  ),
+);
 export const useInterestsStore = create<InterestsState & InterestsAction>()(
   devtools(
     persist(
@@ -43,10 +43,10 @@ export const useInterestsStore = create<InterestsState & InterestsAction>()(
         setInterests: (interests) => set({ interests }),
         resetInterests: () => set({ interests: [] }),
       }),
-      { name: "interests" }
-    )
-  )
-)
+      { name: "interests" },
+    ),
+  ),
+);
 export const useBioDataStore = create<BioDataState & BioDataAction>()(
   devtools(
     persist(
@@ -55,7 +55,7 @@ export const useBioDataStore = create<BioDataState & BioDataAction>()(
         setBioData: (bioData) => set({ bioData }),
         resetBioData: () => set({ bioData: null }),
       }),
-      { name: "bioData" }
-    )
-  )
-)
+      { name: "bioData" },
+    ),
+  ),
+);

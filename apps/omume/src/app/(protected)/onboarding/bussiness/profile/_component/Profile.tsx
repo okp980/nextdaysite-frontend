@@ -1,29 +1,31 @@
-"use client"
-import Button from "@nextdaysite/ui/button"
-import { Input, Textarea } from "@nextui-org/react"
-import { useRouter } from "next/navigation"
-import React, { useEffect, useState } from "react"
-import { useOnboardingProgressStore } from "../../../_util/store"
+"use client";
+import Button from "@nextdaysite/ui/button";
+import { Input, Textarea } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { useOnboardingProgressStore } from "../../../_util/store";
 import {
   useDetailsStore,
   useInterestsStore,
   useRoleStore,
-} from "@/app/(auth)/util/store"
-import { Controller, useForm } from "react-hook-form"
-import { onBoardBussinessSchema } from "../_util/schema"
-import { zodResolver } from "@hookform/resolvers/zod"
-import axios from "axios"
+} from "@/app/(auth)/util/store";
+import { Controller, useForm } from "react-hook-form";
+import { onBoardBussinessSchema } from "../_util/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 
-type Props = {}
+type Props = {};
 
 export default function Profile({}: Props) {
-  const updateProgressBar = useOnboardingProgressStore((state) => state.setStep)
-  const { details } = useDetailsStore.getState()
-  const { role } = useRoleStore.getState()
-  const { interests } = useInterestsStore.getState()
-  const [error, setError] = useState<any>(null)
+  const updateProgressBar = useOnboardingProgressStore(
+    (state) => state.setStep,
+  );
+  const { details } = useDetailsStore.getState();
+  const { role } = useRoleStore.getState();
+  const { interests } = useInterestsStore.getState();
+  const [error, setError] = useState<any>(null);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     control,
@@ -34,33 +36,33 @@ export default function Profile({}: Props) {
   } = useForm({
     defaultValues: { name: "", description: "", url: "", contact: "" },
     resolver: zodResolver(onBoardBussinessSchema),
-  })
+  });
 
   useEffect(() => {
     if (dirtyFields.contact) {
-      updateProgressBar(100)
-      return
+      updateProgressBar(100);
+      return;
     }
     if (dirtyFields.url) {
-      updateProgressBar(85)
-      return
+      updateProgressBar(85);
+      return;
     }
     if (dirtyFields.description) {
-      updateProgressBar(65)
-      return
+      updateProgressBar(65);
+      return;
     }
     if (dirtyFields.name) {
-      updateProgressBar(50)
-      return
+      updateProgressBar(50);
+      return;
     }
 
-    updateProgressBar(40)
+    updateProgressBar(40);
   }, [
     dirtyFields.name,
     dirtyFields.description,
     dirtyFields.url,
     dirtyFields.contact,
-  ])
+  ]);
 
   const handleContinue = async (data: any) => {
     const user = {
@@ -80,18 +82,18 @@ export default function Profile({}: Props) {
       url: data.url,
       contact: data?.contact,
       Role: "Bussiness",
-    }
+    };
     try {
-      setError(null)
+      setError(null);
       const res = await axios.post("/v1/auth/register-admin", user, {
         baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-      })
-      router.push("/welcome")
+      });
+      router.push("/welcome");
     } catch (error: any) {
-      setError(error.response?.data)
-      console.log(error.response?.data)
+      setError(error.response?.data);
+      console.log(error.response?.data);
     }
-  }
+  };
   return (
     <form onSubmit={handleSubmit(handleContinue)}>
       <Controller
@@ -196,5 +198,5 @@ export default function Profile({}: Props) {
         </Button>
       </div>
     </form>
-  )
+  );
 }
