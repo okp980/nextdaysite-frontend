@@ -10,7 +10,6 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/react"
-import { signOut } from "next-auth/react"
 
 export default function Template({ children }: PropsWithChildren) {
   return (
@@ -28,9 +27,7 @@ export default function Template({ children }: PropsWithChildren) {
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="sign out" onClick={() => signOut()}>
-                Log out
-              </DropdownItem>
+              <DropdownItem key="system">Log out</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
