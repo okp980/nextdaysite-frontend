@@ -11,13 +11,13 @@ import { useOnboardingProgressStore } from "../_util/store";
 
 type Props = {};
 
-const items = [
+const items: { name: Role; icon: React.ReactElement }[] = [
   {
-    name: "attendee",
+    name: Role.USER,
     icon: <User />,
   },
   {
-    name: "bussiness",
+    name: Role.BUSSINESS,
     icon: <Bussiness />,
   },
 ];
@@ -28,8 +28,8 @@ export default function SelectItem({}: Props) {
     (state) => state.setStep,
   );
   const updateRole = useRoleStore((state) => state.setRole);
-  const [user, setUser] = useState("");
-  const handleClick = (type: string) => {
+  const [user, setUser] = useState<Role | null>(null);
+  const handleClick = (type: Role) => {
     setUser(type);
   };
 
@@ -37,17 +37,11 @@ export default function SelectItem({}: Props) {
     updateProgressBar(25);
   }, []);
   const handleContinue = () => {
-    updateRole(
-      user === "attendee"
-        ? Role.USER
-        : user === "bussiness"
-          ? Role.ADMIN
-          : null,
-    );
-    if (user === "attendee") {
+    updateRole(user);
+    if (user === Role.USER) {
       router.push("/onboarding/user/interest");
     }
-    if (user === "bussiness") {
+    if (user === Role.BUSSINESS) {
       router.push("/onboarding/bussiness/profile");
     }
   };
