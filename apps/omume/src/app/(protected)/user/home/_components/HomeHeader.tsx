@@ -1,16 +1,16 @@
-"use client";
-import React from "react";
-import Header from "../../_components/Header";
+"use client"
+import React from "react"
+import Header from "../../_components/Header"
 
-type Props = {};
+type Props = {}
 
 export default function HomeHeader({}: Props) {
   return (
     <Header
-      title="Good Morning Alex 👋 is Homw"
+      title="Good Morning Alex 👋"
       description="Here’s how your events are doing"
       buttonLabel="Create Event"
       onClick={() => {}}
     />
-  );
+  )
 }

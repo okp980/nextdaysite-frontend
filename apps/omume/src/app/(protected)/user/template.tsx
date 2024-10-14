@@ -1,15 +1,16 @@
-"use client";
-import { PropsWithChildren } from "react";
-import DashboardNav from "./_components/DashboardNav";
-import Button from "@nextdaysite/ui/button";
-import Notification from "./_assets/icons/Notification";
+"use client"
+import { PropsWithChildren } from "react"
+import DashboardNav from "./_components/DashboardNav"
+import Button from "@nextdaysite/ui/button"
+import Notification from "./_assets/icons/Notification"
 import {
   Avatar,
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-} from "@nextui-org/react";
+} from "@nextui-org/react"
+import { signOut } from "next-auth/react"
 
 export default function Template({ children }: PropsWithChildren) {
   return (
@@ -27,7 +28,14 @@ export default function Template({ children }: PropsWithChildren) {
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="system">Log out</DropdownItem>
+              <DropdownItem
+                key="system"
+                onClick={() =>
+                  signOut({ redirect: true, redirectTo: "/welcome" })
+                }
+              >
+                Log out
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
@@ -36,5 +44,5 @@ export default function Template({ children }: PropsWithChildren) {
         {children}
       </div>
     </div>
-  );
+  )
 }
