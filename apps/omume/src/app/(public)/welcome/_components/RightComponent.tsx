@@ -1,13 +1,13 @@
-"use client"
-import Button from "@nextdaysite/ui/button"
-import React from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
+"use client";
+import Button from "@nextdaysite/ui/button";
+import React from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-type Props = {}
+type Props = {};
 
 export default function RightComponent({}: Props) {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <div className="flex gap-2">
       <Button
@@ -22,5 +22,5 @@ export default function RightComponent({}: Props) {
         Sign Up
       </Button>
     </div>
-  )
+  );
 }
