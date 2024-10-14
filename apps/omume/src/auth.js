@@ -1,12 +1,5 @@
-import NextAuth from "next-auth";
-import Credentials from "next-auth/providers/credentials";
-import { LoginResponse } from "./app/util/types/user";
-
-import { JWT } from "next-auth/jwt";
-
-declare module "next-auth/jwt" {
-  interface JWT extends LoginResponse {}
-}
+import NextAuth from "next-auth"
+import Credentials from "next-auth/providers/credentials"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -16,7 +9,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {},
       },
       authorize: async (credentials) => {
-        let user = null;
+        let user = null
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_URL}/v1/auth/login`,
           {
@@ -28,16 +21,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               identifier: credentials?.email,
               password: credentials?.password,
             }),
-          },
-        );
+          }
+        )
 
-        user = await res.json();
+        user = await res.json()
 
         if (!res.ok) {
-          throw new Error(user);
+          throw new Error(user)
         }
 
-        return user;
+        return user
       },
     }),
   ],
@@ -45,18 +38,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: "jwt",
   },
   callbacks: {
-    jwt({ token, user }: any) {
+    jwt({ token, user }) {
       if (user) {
-        token.user = user.data;
+        token.user = user.data
       }
-      return token;
+      return token
     },
-    session({ session, token }: any) {
-      session.user = token.user;
-      return session;
+    session({ session, token }) {
+      session.user = token.user
+      return session
     },
   },
   pages: {
     signIn: "/signin",
   },
-});
+})
