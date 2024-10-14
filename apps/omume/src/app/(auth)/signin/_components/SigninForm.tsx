@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   Button,
   Card,
@@ -6,27 +6,27 @@ import {
   CardFooter,
   CardHeader,
   Input,
-} from "@nextui-org/react"
-import React, { useState } from "react"
-import Google from "../../assets/svg/Google"
-import Facebook from "../../assets/svg/Facebook"
-import Apple from "../../assets/svg/Apple"
-import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { Controller, useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { loginSchema, registerSchema } from "../../util/schema"
-import { signIn, useSession } from "next-auth/react"
-import { Session } from "next-auth"
+} from "@nextui-org/react";
+import React, { useState } from "react";
+import Google from "../../assets/svg/Google";
+import Facebook from "../../assets/svg/Facebook";
+import Apple from "../../assets/svg/Apple";
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema, registerSchema } from "../../util/schema";
+import { signIn, useSession } from "next-auth/react";
+import { Session } from "next-auth";
 
 type Props = {
-  session: Session | null
-}
+  session: Session | null;
+};
 
 export default function SigninForm({ session }: Props) {
-  const [isVisible, setIsVisible] = React.useState(false)
-  const router = useRouter()
+  const [isVisible, setIsVisible] = React.useState(false);
+  const router = useRouter();
 
   const {
     control,
@@ -35,29 +35,29 @@ export default function SigninForm({ session }: Props) {
   } = useForm({
     defaultValues: { identifier: "", password: "" },
     resolver: zodResolver(loginSchema),
-  })
+  });
 
-  const toggleVisibility = () => setIsVisible(!isVisible)
-  const signInWithGoogleOnClick = () => {}
-  const signInWithFacebookOnClick = () => {}
-  const signInWithAppleOnClick = () => {}
+  const toggleVisibility = () => setIsVisible(!isVisible);
+  const signInWithGoogleOnClick = () => {};
+  const signInWithFacebookOnClick = () => {};
+  const signInWithAppleOnClick = () => {};
 
   const onSubmit = async (data: any) => {
     const res: any = await signIn("credentials", {
       email: data.identifier,
       password: data.password,
       redirect: false,
-    })
+    });
 
     if (res.ok) {
       const callbackUrl =
         // @ts-ignore
         session?.user?.data?.user?.role === "user"
           ? "/user/home"
-          : "/bussiness/home"
-      router.push(callbackUrl)
+          : "/bussiness/home";
+      router.push(callbackUrl);
     }
-  }
+  };
 
   return (
     <section className="flex flex-col gap-5 justify-center items-center">
@@ -186,5 +186,5 @@ export default function SigninForm({ session }: Props) {
         </CardFooter>
       </Card>
     </section>
-  )
+  );
 }
