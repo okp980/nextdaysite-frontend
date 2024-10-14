@@ -1,10 +1,10 @@
-"use client"
-import React from "react"
-import Link from "next/link"
-import SigninForm from "./SigninForm"
-import { Session } from "next-auth"
+"use client";
+import React from "react";
+import Link from "next/link";
+import SigninForm from "./SigninForm";
+import { Session } from "next-auth";
 
-type Props = { session: Session | null }
+type Props = { session: Session | null };
 
 export default function Signin({ session }: Props) {
   return (
@@ -20,5 +20,5 @@ export default function Signin({ session }: Props) {
         </Link>
       </p>
     </section>
-  )
+  );
 }
