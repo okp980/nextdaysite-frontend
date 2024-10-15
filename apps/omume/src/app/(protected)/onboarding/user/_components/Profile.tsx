@@ -1,28 +1,26 @@
-"use client";
-import Button from "@nextdaysite/ui/button";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Select, SelectItem } from "@nextui-org/react";
-import { useOnboardingProgressStore } from "../../_util/store";
-import { Country, State, City } from "country-state-city";
-import { useInterestsStore } from "@/app/(auth)/util/store";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { onBoardUserSchema } from "../_util/schema";
-import axios from "axios";
-import { useSession } from "next-auth/react";
+"use client"
+import Button from "@nextdaysite/ui/button"
+import React, { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import { Select, SelectItem } from "@nextui-org/react"
+import { useOnboardingProgressStore } from "../../_util/store"
+import { Country, State, City } from "country-state-city"
+import { useInterestsStore } from "@/app/(auth)/util/store"
+import { Controller, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { onBoardUserSchema } from "../_util/schema"
+import axios from "axios"
+import { useSession } from "next-auth/react"
 
-type Props = {};
+type Props = {}
 
 export default function Profile({}: Props) {
-  const updateProgressBar = useOnboardingProgressStore(
-    (state) => state.setStep,
-  );
-  const { interests } = useInterestsStore.getState();
-  const [error, setError] = useState<any>(null);
-  const { data: session } = useSession();
+  const updateProgressBar = useOnboardingProgressStore((state) => state.setStep)
+  const { interests } = useInterestsStore.getState()
+  const [error, setError] = useState<any>(null)
+  const { data: session } = useSession()
 
-  const router = useRouter();
+  const router = useRouter()
 
   const {
     control,
@@ -32,33 +30,34 @@ export default function Profile({}: Props) {
   } = useForm({
     defaultValues: { country: "", state: "", city: "", timezone: "" },
     resolver: zodResolver(onBoardUserSchema),
-  });
+    mode: "onTouched",
+  })
 
   useEffect(() => {
     if (dirtyFields.timezone) {
-      updateProgressBar(100);
-      return;
+      updateProgressBar(100)
+      return
     }
     if (dirtyFields.city) {
-      updateProgressBar(85);
-      return;
+      updateProgressBar(85)
+      return
     }
     if (dirtyFields.state) {
-      updateProgressBar(65);
-      return;
+      updateProgressBar(65)
+      return
     }
     if (dirtyFields.country) {
-      updateProgressBar(50);
-      return;
+      updateProgressBar(50)
+      return
     }
 
-    updateProgressBar(40);
+    updateProgressBar(40)
   }, [
     dirtyFields.country,
     dirtyFields.state,
     dirtyFields.city,
     dirtyFields.timezone,
-  ]);
+  ])
 
   const handleContinue = async (data: any) => {
     const user = {
@@ -67,9 +66,9 @@ export default function Profile({}: Props) {
       State: State.getStateByCode(data?.state as string)?.name,
       Country: Country.getCountryByCode(data?.country as string)?.name,
       Timezone: data?.timezone,
-    };
+    }
     try {
-      setError(null);
+      setError(null)
 
       const res = await axios.patch(
         // @ts-ignore
@@ -82,16 +81,16 @@ export default function Profile({}: Props) {
             Authorization: `Bearer ${session?.user?.token.accessToken}`,
             "Content-Type": "application/json",
           },
-        },
-      );
-      console.log("res", res);
+        }
+      )
+      console.log("res", res)
 
-      router.push("/user/home");
+      router.push("/user/home")
     } catch (error: any) {
-      setError(error.response?.data);
-      console.log(error.response?.data);
+      setError(error.response?.data)
+      console.log(error.response?.data)
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit(handleContinue)}>
@@ -172,7 +171,7 @@ export default function Profile({}: Props) {
                   <SelectItem key={city.name} value={city.name}>
                     {city.name}
                   </SelectItem>
-                ),
+                )
               )}
             </Select>
           )}
@@ -201,7 +200,7 @@ export default function Profile({}: Props) {
                   <SelectItem key={zone.gmtOffsetName}>
                     {zone.gmtOffsetName}
                   </SelectItem>
-                ),
+                )
               )}
             </Select>
           )}
@@ -223,5 +222,5 @@ export default function Profile({}: Props) {
         </Button>
       </div>
     </form>
-  );
+  )
 }

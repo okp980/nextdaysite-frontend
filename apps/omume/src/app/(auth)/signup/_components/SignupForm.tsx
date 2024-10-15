@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import {
   Button,
   Card,
@@ -8,32 +8,32 @@ import {
   Input,
   Select,
   SelectItem,
-} from "@nextui-org/react";
-import React, { ReactElement, useState } from "react";
-import Google from "../../assets/svg/Google";
-import Facebook from "../../assets/svg/Facebook";
-import Apple from "../../assets/svg/Apple";
-import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema } from "../../util/schema";
-import PasswordCheck from "./PasswordCheck";
-import { useDetailsStore } from "../../util/store";
-import axios from "axios";
-import { signIn } from "next-auth/react";
-import { Role, User } from "@/app/util/types/user";
+} from "@nextui-org/react"
+import React, { ReactElement, useState } from "react"
+import Google from "../../assets/svg/Google"
+import Facebook from "../../assets/svg/Facebook"
+import Apple from "../../assets/svg/Apple"
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { Controller, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { registerSchema } from "../../util/schema"
+import PasswordCheck from "./PasswordCheck"
+import { useDetailsStore } from "../../util/store"
+import axios from "axios"
+import { signIn } from "next-auth/react"
+import { Role, User } from "@/app/util/types/user"
 
-type Props = {};
+type Props = {}
 
 export default function SignupForm({}: Props) {
-  const [step, setStep] = useState<1 | 2>(1);
-  const [isVisible, setIsVisible] = React.useState(false);
-  const updateDetails = useDetailsStore((state) => state.setDetails);
-  const [error, setError] = useState<any>(null);
+  const [step, setStep] = useState<1 | 2>(1)
+  const [isVisible, setIsVisible] = React.useState(false)
+  const updateDetails = useDetailsStore((state) => state.setDetails)
+  const [error, setError] = useState<any>(null)
 
-  const router = useRouter();
+  const router = useRouter()
 
   // Form 1
   const {
@@ -43,7 +43,8 @@ export default function SignupForm({}: Props) {
   } = useForm({
     defaultValues: { email: "" },
     resolver: zodResolver(registerSchema.pick({ email: true })),
-  });
+    mode: "onTouched",
+  })
 
   // Form 2
   const {
@@ -62,17 +63,18 @@ export default function SignupForm({}: Props) {
       role: "",
     },
     resolver: zodResolver(registerSchema),
-  });
+    mode: "onTouched",
+  })
 
-  const toggleVisibility = () => setIsVisible(!isVisible);
-  const signInWithGoogleOnClick = () => {};
-  const signInWithFacebookOnClick = () => {};
-  const signInWithAppleOnClick = () => {};
+  const toggleVisibility = () => setIsVisible(!isVisible)
+  const signInWithGoogleOnClick = () => {}
+  const signInWithFacebookOnClick = () => {}
+  const signInWithAppleOnClick = () => {}
 
   const onSubmitFormOne = (data: any) => {
-    setValue("email", data.email);
-    setStep(2);
-  };
+    setValue("email", data.email)
+    setStep(2)
+  }
 
   const onSubmitFormTwo = async (data: any) => {
     const user = {
@@ -83,22 +85,22 @@ export default function SignupForm({}: Props) {
       "Auth Type": "Password",
       password: data?.password,
       role: data?.role,
-    };
+    }
     try {
-      setError(null);
+      setError(null)
       const res = await axios.post<{ data: User }>("/v1/auth/register", user, {
         baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-      });
+      })
       await signIn("credentials", {
         email: data.email,
         password: data.password,
         redirect: true,
-        redirectTo: `/onboarding/${res?.data.data.role === Role.USER ? "user/interests" : "business/profile"}`,
-      });
+        redirectTo: `/onboarding/${res?.data.data.role === Role.USER ? "user/interest" : "business/profile"}`,
+      })
     } catch (error: any) {
-      setError(error.response?.data);
+      setError(error.response?.data)
     }
-  };
+  }
   return (
     <section className="flex flex-col gap-5 justify-center items-center">
       <Card
@@ -266,7 +268,7 @@ export default function SignupForm({}: Props) {
                     variant="bordered"
                   >
                     <SelectItem key={"user"} value={"user"}>
-                      Attendee
+                      User
                     </SelectItem>
                     <SelectItem key={"business"} value={"business"}>
                       Business
@@ -358,5 +360,5 @@ export default function SignupForm({}: Props) {
         </CardFooter>
       </Card>
     </section>
-  );
+  )
 }
