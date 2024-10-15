@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const onBoardBusinessSchema = z.object({
   name: z.string().min(1),
@@ -6,4 +6,4 @@ export const onBoardBusinessSchema = z.object({
   url: z.string().min(1),
   phoneNumber: z.string().min(1),
   email: z.string().email(),
-})
+});
