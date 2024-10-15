@@ -1,15 +1,15 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import User from "../_assets/svg/User";
-import Bussiness from "../_assets/svg/Bussiness";
-import Item from "./Item";
-import Button from "@nextdaysite/ui/button";
-import { useRouter } from "next/navigation";
-import { useRoleStore } from "@/app/(auth)/util/store";
-import { Role } from "@/app/util/types/user";
-import { useOnboardingProgressStore } from "../_util/store";
+"use client"
+import React, { useEffect, useState } from "react"
+import User from "../_assets/svg/User"
+import Business from "../_assets/svg/Business"
+import Item from "./Item"
+import Button from "@nextdaysite/ui/button"
+import { useRouter } from "next/navigation"
+import { useRoleStore } from "@/app/(auth)/util/store"
+import { Role } from "@/app/util/types/user"
+import { useOnboardingProgressStore } from "../_util/store"
 
-type Props = {};
+type Props = {}
 
 const items: { name: Role; icon: React.ReactElement }[] = [
   {
@@ -17,34 +17,32 @@ const items: { name: Role; icon: React.ReactElement }[] = [
     icon: <User />,
   },
   {
-    name: Role.BUSSINESS,
-    icon: <Bussiness />,
+    name: Role.BUSINESS,
+    icon: <Business />,
   },
-];
+]
 
 export default function SelectItem({}: Props) {
-  const router = useRouter();
-  const updateProgressBar = useOnboardingProgressStore(
-    (state) => state.setStep,
-  );
-  const updateRole = useRoleStore((state) => state.setRole);
-  const [user, setUser] = useState<Role | null>(null);
+  const router = useRouter()
+  const updateProgressBar = useOnboardingProgressStore((state) => state.setStep)
+  const updateRole = useRoleStore((state) => state.setRole)
+  const [user, setUser] = useState<Role | null>(null)
   const handleClick = (type: Role) => {
-    setUser(type);
-  };
+    setUser(type)
+  }
 
   useEffect(() => {
-    updateProgressBar(25);
-  }, []);
+    updateProgressBar(25)
+  }, [])
   const handleContinue = () => {
-    updateRole(user);
+    updateRole(user)
     if (user === Role.USER) {
-      router.push("/onboarding/user/interest");
+      router.push("/onboarding/user/interest")
     }
-    if (user === Role.BUSSINESS) {
-      router.push("/onboarding/bussiness/profile");
+    if (user === Role.BUSINESS) {
+      router.push("/onboarding/business/profile")
     }
-  };
+  }
   return (
     <div className="flex flex-col gap-4">
       {items.map((item, i) => (
@@ -69,5 +67,5 @@ export default function SelectItem({}: Props) {
         </Button>
       </div>
     </div>
-  );
+  )
 }

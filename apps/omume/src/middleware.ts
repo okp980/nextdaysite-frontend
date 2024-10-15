@@ -1,4 +1,4 @@
-export { auth as middleware } from "./auth";
+export { auth as middleware } from "./auth"
 // import { auth } from "./auth"
 // import { Role } from "@/app/util/types/user"
 // import { NextResponse } from "next/server"
@@ -12,7 +12,7 @@ export { auth as middleware } from "./auth";
 
 //   if (
 //     req.auth.user?.role !== "admin" &&
-//     req.nextUrl.pathname.startsWith("/bussiness")
+//     req.nextUrl.pathname.startsWith("/business")
 //   ) {
 //     return NextResponse.rewrite(new URL("/403", req.url))
 //   }
@@ -27,6 +27,6 @@ export { auth as middleware } from "./auth";
 // }) as any
 
 // export const config = {
-//   // matcher: ["/onboarding/:path*", "/user/:path*", "/bussiness/:path*"],
-//   matcher: ["/user/:path*", "/bussiness/:path*"],
+//   // matcher: ["/onboarding/:path*", "/user/:path*", "/business/:path*"],
+//   matcher: ["/user/:path*", "/business/:path*"],
 // }

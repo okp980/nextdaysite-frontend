@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 
-type Props = {};
+type Props = {}
 
-export default function Bussiness({}: Props) {
+export default function Business({}: Props) {
   return (
     <svg
       width="35"
@@ -30,5 +30,5 @@ export default function Bussiness({}: Props) {
         />
       </defs>
     </svg>
-  );
+  )
 }

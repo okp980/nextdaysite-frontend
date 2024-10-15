@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import {
   Button,
   Card,
@@ -6,31 +6,34 @@ import {
   CardFooter,
   CardHeader,
   Input,
-} from "@nextui-org/react";
-import React, { ReactElement, useState } from "react";
-import Google from "../../assets/svg/Google";
-import Facebook from "../../assets/svg/Facebook";
-import Apple from "../../assets/svg/Apple";
-import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema } from "../../util/schema";
-import PasswordCheck from "./PasswordCheck";
-import { useDetailsStore } from "../../util/store";
-import axios from "axios";
-import { signIn } from "next-auth/react";
+  Select,
+  SelectItem,
+} from "@nextui-org/react"
+import React, { ReactElement, useState } from "react"
+import Google from "../../assets/svg/Google"
+import Facebook from "../../assets/svg/Facebook"
+import Apple from "../../assets/svg/Apple"
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { Controller, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { registerSchema } from "../../util/schema"
+import PasswordCheck from "./PasswordCheck"
+import { useDetailsStore } from "../../util/store"
+import axios from "axios"
+import { signIn } from "next-auth/react"
+import { Role, User } from "@/app/util/types/user"
 
-type Props = {};
+type Props = {}
 
 export default function SignupForm({}: Props) {
-  const [step, setStep] = useState<1 | 2>(1);
-  const [isVisible, setIsVisible] = React.useState(false);
-  const updateDetails = useDetailsStore((state) => state.setDetails);
-  const [error, setError] = useState<any>(null);
+  const [step, setStep] = useState<1 | 2>(1)
+  const [isVisible, setIsVisible] = React.useState(false)
+  const updateDetails = useDetailsStore((state) => state.setDetails)
+  const [error, setError] = useState<any>(null)
 
-  const router = useRouter();
+  const router = useRouter()
 
   // Form 1
   const {
@@ -40,7 +43,7 @@ export default function SignupForm({}: Props) {
   } = useForm({
     defaultValues: { email: "" },
     resolver: zodResolver(registerSchema.pick({ email: true })),
-  });
+  })
 
   // Form 2
   const {
@@ -51,19 +54,25 @@ export default function SignupForm({}: Props) {
     formState: { isValid, dirtyFields, isSubmitting },
     setValue,
   } = useForm({
-    defaultValues: { email: "", password: "", phoneNumber: "", fullName: "" },
+    defaultValues: {
+      email: "",
+      password: "",
+      phoneNumber: "",
+      fullName: "",
+      role: "",
+    },
     resolver: zodResolver(registerSchema),
-  });
+  })
 
-  const toggleVisibility = () => setIsVisible(!isVisible);
-  const signInWithGoogleOnClick = () => {};
-  const signInWithFacebookOnClick = () => {};
-  const signInWithAppleOnClick = () => {};
+  const toggleVisibility = () => setIsVisible(!isVisible)
+  const signInWithGoogleOnClick = () => {}
+  const signInWithFacebookOnClick = () => {}
+  const signInWithAppleOnClick = () => {}
 
   const onSubmitFormOne = (data: any) => {
-    setValue("email", data.email);
-    setStep(2);
-  };
+    setValue("email", data.email)
+    setStep(2)
+  }
 
   const onSubmitFormTwo = async (data: any) => {
     const user = {
@@ -73,22 +82,23 @@ export default function SignupForm({}: Props) {
       phone: data?.phoneNumber,
       "Auth Type": "Password",
       password: data?.password,
-    };
+      role: data?.role,
+    }
     try {
-      setError(null);
-      await axios.post("/v1/auth/register", user, {
+      setError(null)
+      const res = await axios.post<{ data: User }>("/v1/auth/register", user, {
         baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-      });
+      })
       await signIn("credentials", {
         email: data.email,
         password: data.password,
         redirect: true,
-        redirectTo: "/onboarding",
-      });
+        redirectTo: `/onboarding/${res?.data.data.role === Role.USER ? "user/interests" : "business/profile"}`,
+      })
     } catch (error: any) {
-      setError(error.response?.data);
+      setError(error.response?.data)
     }
-  };
+  }
   return (
     <section className="flex flex-col gap-5 justify-center items-center">
       <Card
@@ -239,6 +249,33 @@ export default function SignupForm({}: Props) {
               />
 
               <Controller
+                name="role"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    label="Role*"
+                    labelPlacement="outside"
+                    placeholder="How do you want to use Omume"
+                    {...field}
+                    classNames={{
+                      mainWrapper: ["mb-5 font-lato"],
+                      trigger: ["border border-[#EAECF0] radius-2xl"],
+                      label: [" text-small mb-4"],
+                      description: ["text-base"],
+                    }}
+                    variant="bordered"
+                  >
+                    <SelectItem key={"user"} value={"user"}>
+                      Attendee
+                    </SelectItem>
+                    <SelectItem key={"business"} value={"business"}>
+                      Business
+                    </SelectItem>
+                  </Select>
+                )}
+              />
+
+              <Controller
                 name="password"
                 control={control}
                 render={({ field, fieldState }) => (
@@ -302,7 +339,7 @@ export default function SignupForm({}: Props) {
           )}
         </CardBody>
         <CardFooter>
-          <p className="font-lato text-sm">
+          <p className="font-lato text-sm text-center">
             By continuing with Google, Apple, or Email, you agree to Omume’s
             <Link
               className="text-primary underline underline-offset-2"
@@ -321,5 +358,5 @@ export default function SignupForm({}: Props) {
         </CardFooter>
       </Card>
     </section>
-  );
+  )
 }
