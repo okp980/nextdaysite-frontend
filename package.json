@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo run build",
     "build:omume": "turbo run build --filter=omume",
+    "start:omume": "turbo run start --filter=omume",
     "dev": "turbo run dev",
     "dev:omume": "turbo run dev --filter=omume",
     "lint": "turbo run lint",
