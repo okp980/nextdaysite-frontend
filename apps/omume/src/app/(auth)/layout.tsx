@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from "react"
-import Nav from "@nextdaysite/ui/nav-bar"
+import React, { PropsWithChildren } from "react";
+import Nav from "@nextdaysite/ui/nav-bar";
 
-type Props = {}
+type Props = {};
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
@@ -11,5 +11,5 @@ export default function Layout({ children }: PropsWithChildren) {
       </div>
       {children}
     </div>
-  )
+  );
 }
