@@ -1,26 +1,23 @@
-"use client";
-import Button from "@nextdaysite/ui/button";
-import { Input, Textarea } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { useOnboardingProgressStore } from "../../../_util/store";
-import { Controller, useForm } from "react-hook-form";
-import { onBoardBusinessSchema } from "../_util/schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
-import { useSession } from "next-auth/react";
+"use client"
+import Button from "@nextdaysite/ui/button"
+import { Input, Textarea } from "@nextui-org/react"
+import { useRouter } from "next/navigation"
+import React, { useEffect, useState } from "react"
+import { useOnboardingProgressStore } from "../../../_util/store"
+import { Controller, useForm } from "react-hook-form"
+import { onBoardBusinessSchema } from "../_util/schema"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useSession } from "next-auth/react"
 
-type Props = {};
+type Props = {}
 
 export default function Profile({}: Props) {
-  const updateProgressBar = useOnboardingProgressStore(
-    (state) => state.setStep,
-  );
-  const { data: session } = useSession();
+  const updateProgressBar = useOnboardingProgressStore((state) => state.setStep)
+  const { data: session } = useSession()
 
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<any>(null)
 
-  const router = useRouter();
+  const router = useRouter()
 
   const {
     control,
@@ -32,33 +29,33 @@ export default function Profile({}: Props) {
     defaultValues: { name: "", description: "", url: "", contact: "" },
     resolver: zodResolver(onBoardBusinessSchema),
     mode: "onTouched",
-  });
+  })
 
   useEffect(() => {
     if (dirtyFields.contact) {
-      updateProgressBar(100);
-      return;
+      updateProgressBar(100)
+      return
     }
     if (dirtyFields.url) {
-      updateProgressBar(85);
-      return;
+      updateProgressBar(85)
+      return
     }
     if (dirtyFields.description) {
-      updateProgressBar(65);
-      return;
+      updateProgressBar(65)
+      return
     }
     if (dirtyFields.name) {
-      updateProgressBar(50);
-      return;
+      updateProgressBar(50)
+      return
     }
 
-    updateProgressBar(40);
+    updateProgressBar(40)
   }, [
     dirtyFields.name,
     dirtyFields.description,
     dirtyFields.url,
     dirtyFields.contact,
-  ]);
+  ])
 
   const handleContinue = async (data: any) => {
     const user = {
@@ -68,24 +65,30 @@ export default function Profile({}: Props) {
       description: data.description,
       website_url: data.url,
       contact_phone: data?.contact,
-    };
-    try {
-      setError(null);
-      const res = await axios.post("/business-profiles", user, {
-        baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+    }
+    setError(null)
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/business-profiles`,
+      {
+        method: "POST",
         headers: {
+          "Content-Type": "application/json",
           // @ts-ignore
           Authorization: `Bearer ${session?.user?.token.accessToken}`,
-          "Content-Type": "application/json",
         },
-      });
+        body: JSON.stringify(user),
+      }
+    )
 
-      router.push("/business/home");
-    } catch (error: any) {
-      setError(error.response?.data);
-      console.log(error.response?.data);
+    const result = await res.json()
+
+    if (!res.ok) {
+      setError(result)
+      return
     }
-  };
+
+    router.push("/business/home")
+  }
   return (
     <form onSubmit={handleSubmit(handleContinue)}>
       <Controller
@@ -190,5 +193,5 @@ export default function Profile({}: Props) {
         </Button>
       </div>
     </form>
-  );
+  )
 }
